@@ -7,19 +7,18 @@ menu = {
 
 user_order = []
 
-
-
-for key, values in menu.items():
-    for value in values:
-        print(value)
+for values in menu.values():
+    for key, value in menu.items():
+        print(key, value)
 
 user_input = input('***********************************\n** What would you\
  like to order? ''**\n***********************************\n')
 
 
-
 # continue_order = input('***********************************\n** Are you finished with\
 # your order? Type "quit" if yes''**\n***********************************\n')
+
+count = 0
 
 while True:
     continue_order = input('***********************************\n** Are you finished\
