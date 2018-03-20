@@ -16,11 +16,18 @@ for key, values in menu.items():
     for value in values:
         print(value)
 
+user_input = input('***********************************\n** What would you\
+like to order? ''**\n***********************************\n')
+
+continue_order = input('***********************************\n** Are you finished with your\
+order? Type "quit" if yes''**\n***********************************\n')
+
+print(user_input)
+
 while True:
-    user_input = input('***********************************\n** What would you\
-    like to order? ''**\n***********************************\n')
-    if user_input in menu.items():
-        user_order.copy(user_input)
+    continue_order
+    if continue_order in menu.items():
+        user_order.update(continue_order)
         print('Your current order consists of ' + str(user_order))
         pass
     else:
