@@ -1,5 +1,5 @@
 menu = {
-    'appetizers' : ['Appetizers:','- *2', 'Wings', 'Cookies', 'Spring Rolls\n'],
+    'appetizers' : ['Appetizers:','----------', 'Wings', 'Cookies', 'Spring Rolls\n'],
 'entrees' : ['Entrees:', '----------','Salmon',
            'Steak', 'Meat Tornado', 'A Literal Garden\n'],
 'desserts' : ['Desserts:', '----------', 'Ice Cream', 'Cake', 'Pie\n'],
@@ -10,8 +10,8 @@ user_order = []
 
 if __name__ == "__main__":
     print('**************************************\n** Welcome to the Snakes\
-    Cafe! **\n** Please see our menu below. **\n** To quit at any time, \
-    type "quit" **\n**************************************')
+Cafe! **\n** Please see our menu below. **\n** To quit at any time,\
+type "quit" **\n**************************************')
 
 for key, values in menu.items():
     for value in values:
@@ -23,11 +23,9 @@ user_input = input('***********************************\n** What would you\
 # continue_order = input('***********************************\n** Are you finished with\
 # your order? Type "quit" if yes''**\n***********************************\n')
 
-# print(user_input)
-
 while True:
     continue_order = input('***********************************\n** Are you finished\
-    with your order? Type "quit" if yes''**\n***********************************\n')
+with your order? Type "quit" if yes''**\n***********************************\n')
     if continue_order in menu.items():
         user_order.append(continue_order)
         print('Your current order consists of ' + str(user_order))
