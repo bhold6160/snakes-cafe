@@ -6,7 +6,8 @@ menu = {
 'drinks' : ['Drinks', '----------', 'Coffee', 'Tea', 'Blood of the Innocent\n'],
 }
 
-user_order = []
+user_order = {}
+
 print('**************************************\n** Welcome to the Snakes\
 Cafe! **\n** Please see our menu below. **\n** To quit at any time, \
 type "quit" **\n**************************************')
@@ -15,13 +16,20 @@ for key, values in menu.items():
     for value in values:
         print(value)
 
+user_input = input('***********************************\n** What would you\
+like to order? ''**\n***********************************\n')
+
+continue_order = input('***********************************\n** Are you finished with your\
+order? Type "quit" if yes''**\n***********************************\n')
+
+print(user_input)
+
 while True:
-    user_input = input('***********************************\n** What would you\
-     like to order? ''**\n***********************************\n')
-    if user_input in menu:
-        user_order.append(user_input)
+    continue_order
+    if continue_order in menu.items():
+        user_order.update(continue_order)
         print('Your current order consists of ' + str(user_order))
-        continue
+        pass
     else:
         user_input = 'quit()'
         break
