@@ -19,7 +19,7 @@ for key, values in menu.items():
 while True:
     user_input = input('***********************************\n** What would you\
     like to order? ''**\n***********************************\n')
-    if user_input in menu:
+    if user_input in menu.items():
         user_order.append(user_input)
         print('Your current order consists of ' + str(user_order))
         continue
