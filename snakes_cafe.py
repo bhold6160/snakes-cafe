@@ -1,9 +1,8 @@
 menu = {
-    'appetizers' : ['Appetizers:','----------', 'Wings', 'Cookies', 'Spring Rolls\n'],
-'entrees' : ['Entrees:', '----------','Salmon',
-           'Steak', 'Meat Tornado', 'A Literal Garden\n'],
-'desserts' : ['Desserts:', '----------', 'Ice Cream', 'Cake', 'Pie\n'],
-'drinks' : ['Drinks', '----------', 'Coffee', 'Tea', 'Blood of the Innocent\n'],
+    'appetizers': {'Wings': 8.00, 'Spring Rolls': 5.00, 'Cookies': 2.00},
+    'entrees': {'Salmon': 15.00, 'Steak': 20.00, 'Meat Tornado': 25.00, 'A Literal Garden': 12.00},
+    'desserts': {'Ice Cream': 6.00, 'Cake': 6.00, 'Pie': 7.00},
+    'drinks': {'Coffee': 3.00, 'Tea': 2.00, 'Blood of the Innocent': 50.00}
 }
 
 user_order = []
