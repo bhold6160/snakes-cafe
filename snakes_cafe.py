@@ -6,7 +6,7 @@ menu = {
 'drinks' : ['Drinks', '----------', 'Coffee', 'Tea', 'Blood of the Innocent\n'],
 }
 
-user_order = []
+user_order = {}
 
 print('**************************************\n** Welcome to the Snakes\
 Cafe! **\n** Please see our menu below. **\n** To quit at any time, \
@@ -20,7 +20,7 @@ while True:
     user_input = input('***********************************\n** What would you\
     like to order? ''**\n***********************************\n')
     if user_input in menu.items():
-        user_order.append(user_input)
+        user_order.update(user_input)
         print('Your current order consists of ' + str(user_order))
         continue
     else:
