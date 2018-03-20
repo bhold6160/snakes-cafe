@@ -6,7 +6,7 @@ menu = {
 'drinks' : ['Drinks', '----------', 'Coffee', 'Tea', 'Blood of the Innocent\n'],
 }
 
-user_order = {}
+user_order = []
 
 print('**************************************\n** Welcome to the Snakes\
 Cafe! **\n** Please see our menu below. **\n** To quit at any time, \
