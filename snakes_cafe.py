@@ -20,9 +20,9 @@ while True:
     user_input = input('***********************************\n** What would you\
     like to order? ''**\n***********************************\n')
     if user_input in menu.items():
-        user_order.update(user_input)
+        user_order.copy(user_input)
         print('Your current order consists of ' + str(user_order))
-        continue
+        pass
     else:
         user_input = 'quit()'
         break
