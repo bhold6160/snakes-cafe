@@ -21,7 +21,7 @@ for item in desserts:
 for item in drinks:
     print(item)
 
-
+user_quit = 'quit()'
 while True:
     user_input = input('***********************************\n** What would you like to order? '
                        '**\n***********************************\n')
@@ -29,3 +29,6 @@ while True:
         user_order.append(user_input)
         print('Your current order consists of ' + str(user_order))
         continue
+    else:
+        user_input = user_quit
+        break
