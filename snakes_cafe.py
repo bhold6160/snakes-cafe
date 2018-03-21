@@ -52,11 +52,11 @@ def welcome_message():
 **************************************')
     return welcome
 
-def first_input():
-    initial_input = input('***********************************\n\
+def get_user_input():
+    return input('***********************************\n\
 ** What would you like to order? ''**\n\
 ***********************************\n>')
-    return initial_input
+
 
 def print_menu():
     return_value = ''
@@ -71,7 +71,7 @@ def print_menu():
 
 def user_input_to_list():
     while True: 
-        user_input = first_input()
+        user_input = get_user_input()
         # import pdb; pdb.set_trace()
         for item in menu:
             if user_input in item:
@@ -86,16 +86,37 @@ def check_user_input(guess, answer):
         exit_program()
     return guess == answer
 
-# def user_quit():
-#     quit_return = 'quit()'
-#     user_input = first_input
-#     if user_input == 'quit':
-#         print('***********************************\n** Your order has been completed\
-#         ''**\n***********************************\n')
-#         return quit_return
 
-if __name__ == "__main__":
+def response(output):
+    '''Doc strings are good'''
+    if output is True:
+        return '''
+        ***********************************\n\
+        ** Are you finished with your order? Type "quit" if yes''**\n\
+        ***********************************\n>
+        '''
+    return 'Try Again...'
+
+
+def main():
+    '''
+    Main function which acts as an entry point to the application when run as a script
+    '''
     welcome_message()
     print_menu()
-    user_input_to_list()
-    # user_quit()
+
+    while True:
+        user_input = get_user_input()
+        try:
+            output = check_user_input(user_input, menu.values())
+        except TypeError:
+            print(response(False))
+
+        if output is True:
+            print(response(output))
+            break
+
+
+if __name__ == "__main__":
+    main()
+    # user_input_to_list()
