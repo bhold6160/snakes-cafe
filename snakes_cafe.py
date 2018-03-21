@@ -39,17 +39,16 @@ menu = {
         'Apples': 1.00,
         'Rice': 4.00}
 }
-"""
-for key, value in menu.items():
-    for item, price in value.items():
-        print(item, price)
+
 user_order = []
-"""
 
 def welcome_message():
-    print('**************************************\n** Welcome to the Snakes\
+    print('''**************************************\n** Welcome to the Snakes\
 Cafe! **\n** Please see our menu below. **\n** To quit at any time,\
-type "quit" **\n**************************************')
+type "quit" **\n**************************************''')
+    for key, value in menu.items():
+        for item, price in value.items():
+            print(item, price)
 
 
 def first_input():
