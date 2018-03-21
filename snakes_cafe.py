@@ -7,7 +7,7 @@ menu = {
         'Cookies': [2.00, 0],
         'Grilled Squid': [8.00, 0],
         'Crab Wonton': [6.00, 0],
-        'Satay': [7.00, 0],
+        'Satay': [7.00, 0]
     },
     'entrees': {
         'Salmon': [15.00, 0],
@@ -15,7 +15,7 @@ menu = {
         'Meat Tornado': [25.00, 0],
         'A Literal Garden': [12.00, 0],
         'Pad Thai': [10.00, 0],
-        'Spicy Meatballs': [12.00, 0],
+        'Spicy Meatballs': [12.00, 0]
     },
     'desserts': {
         'Ice Cream': [6.00, 0],
@@ -31,7 +31,7 @@ menu = {
         'Blood of the Innocent': [50.00, 0],
         'Champagne': [8.00, 0],
         'Martini': [11.00, 0],
-        'Italian Lemondrop': [10.00, 0],
+        'Italian Lemondrop': [10.00, 0]
     },
     'sides': {
         'Bread': [2.00, 0],
@@ -39,7 +39,7 @@ menu = {
         'Potatoes': [3.00, 0],
         'Bacon': [5.00, 0],
         'Apples': [1.00, 0],
-        'Rice': [4.00, 0],
+        'Rice': [4.00, 0]
     }
 }
 
