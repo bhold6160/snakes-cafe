@@ -63,8 +63,11 @@ def print_menu():
     return_value = ''
     for value in menu.values():
         for item, price in value.items():
-            print('{}: {}' .format(item, price))
-            return_value += '{}: {}\n' .format(item, price)
+            item_str = item.ljust(20)
+            price_str = ('$' + str(price[0]) + '0').rjust(30)
+            new_str = item_str + price_str
+            print(new_str)
+            return_value += '{}: ${p:0.2f}\n' .format(item, p=price[0])
     return return_value
 
 #     continue_order = input('***********************************\n** Are you finished with\
