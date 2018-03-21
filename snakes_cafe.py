@@ -67,8 +67,6 @@ def print_menu():
             return_value += '{}: {}\n' .format(item, price)
     return return_value
 
-#     continue_order = input('***********************************\n** Are you finished with\
-# your order? Type "quit" if yes''**\n***********************************\n>')
 
 def user_input_to_list():
     while True: 
@@ -77,10 +75,11 @@ def user_input_to_list():
         for item in menu:
             if user_input in item:
                 user_order.append(user_input)
-    return user_order
+
 
 def exit_program():
     exit(0)
+
 
 def check_user_input(guess, answer):
     if guess == 'quit':
@@ -89,7 +88,6 @@ def check_user_input(guess, answer):
 
 
 def response(output):
-    '''Doc strings are good'''
     if output is True:
         return '''
         ***********************************\n\
