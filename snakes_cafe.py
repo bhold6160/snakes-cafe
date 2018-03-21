@@ -31,9 +31,12 @@ def first_input():
 # your order? Type "quit" if yes''**\n***********************************\n>')
 
 def print_menu():
+    return_value = ''
     for value in menu.values():
         for item, price in value.items():
             print('{}: {}' .format(item, price))
+            return_value += '{}: {}\n' .format(item, price)
+    return return_value
 
 # def user_input():
 #     initial_input = input('***********************************\n** What would you\
