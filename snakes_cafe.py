@@ -63,38 +63,33 @@ def print_menu():
     for key, value in menu.items():
         print('\n{}\n----------\n' .format(key))   
         for item, price in value.items():
-            print('{}: {}' .format(item, price))
+            print('{}: {:>15}' .format(item, price))
             return_value += '{}: {}\n' .format(item, price)
     return return_value
-
-
-def user_input_to_list():
-    while True: 
-        user_input = get_user_input()
-        # import pdb; pdb.set_trace()
-        for item in menu:
-            if user_input in item:
-                user_order.append(user_input)
 
 
 def exit_program():
     exit(0)
 
 
-def check_user_input(guess, answer):
+def check_user_input(guess, answers):
     if guess == 'quit':
         exit_program()
-    return guess == answer
+    for answer in answers:
+        if guess in answer:
+            return True
 
 
 def response(output):
     if output is True:
-        return '''
-        ***********************************\n\
-        ** Are you finished with your order? Type "quit" if yes''**\n\
-        ***********************************\n>
-        '''
-    return 'Try Again...'
+        check_order_complete = input('\
+***********************************\n\
+** Are you finished with your order? Type "quit" if yes''**\n\
+***********************************\n>')
+    if check_order_complete == 'quit':
+        return True
+    else:
+        return 'Try again...'
 
 
 def main():
@@ -106,16 +101,12 @@ def main():
 
     while True:
         user_input = get_user_input()
-        try:
-            output = check_user_input(user_input, menu.values())
-        except TypeError:
-            print(response(False))
-
-        if output is True:
-            print(response(output))
-            break
-
+        output = check_user_input(user_input, menu.values())
+        if output is False:
+            print('Not on the Menu. Try again...')
+            return
+        user_order.append(user_input)
+        print(user_order)
 
 if __name__ == "__main__":
     main()
-    # user_input_to_list()
