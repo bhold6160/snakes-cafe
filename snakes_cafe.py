@@ -6,6 +6,8 @@
 # 'drinks' : ['Drinks', '----------', 'Coffee', 'Tea', 'Blood of the Innocent\n'],
 # }
 
+import uuid
+
 menu = {
     'appetizers': {'Wings': 8.00, 'Spring Rolls': 5.00, 'Cookies': 2.00},
     'entrees': {'Salmon': 15.00, 'Steak': 20.00, 'Meat Tornado': 25.00, 'A Literal Garden': 12.00},
@@ -52,7 +54,12 @@ def user_input_to_list():
         for item in menu:
             if user_input in item:
                 user_order.append(user_input)
-                print('Your current order consists of ' + str(user_order))
+                uuidmap = {}
+        for d in user_order:
+            if d['order'] not in uuidmap:
+                uuidmap[d['order']] = generateUUID()
+                d['UUID'] = uuidmap[d['order']]
+                print('Your current order consists of ' + str(uuid) + str(user_order))
 
 # def user_quit():
 #     if  == 'quit':
