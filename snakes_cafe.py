@@ -60,7 +60,8 @@ def get_user_input():
 
 def print_menu():
     return_value = ''
-    for value in menu.values():
+    for key, value in menu.items():
+        print('\n{}\n----------\n' .format(key))   
         for item, price in value.items():
             print('{}: {}' .format(item, price))
             return_value += '{}: {}\n' .format(item, price)
