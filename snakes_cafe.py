@@ -45,12 +45,12 @@ menu = {
 user_order = []
 
 def welcome_message():
-    print('**************************************\n\
+    welcome = print('**************************************\n\
 ** Welcome to the Snakes Cafe! **\n\
 ** Please see our menu below. **\n\
 ** To quit at any time, type "quit" **\n\
 **************************************')
-
+    return welcome
 
 def first_input():
     initial_input = input('***********************************\n\
@@ -66,33 +66,25 @@ def print_menu():
             return_value += '{}: {}\n' .format(item, price)
     return return_value
 
-# def user_input():
-#     initial_input = input('***********************************\n** What would you\
-#  like to order? ''**\n***********************************\n')
-
 #     continue_order = input('***********************************\n** Are you finished with\
 # your order? Type "quit" if yes''**\n***********************************\n>')
 
 def user_input_to_list():
-    return_order = ['']
     while True: 
         user_input = first_input()
         # import pdb; pdb.set_trace()
         for item in menu:
             if user_input in item:
                 user_order.append(user_input)
-    return return_order
-        #         uuidmap = {}
-        # for d in user_order:
-        #     if d['order'] not in uuidmap:
-        #         uuidmap[d['order']] = generateUUID()
-        #         d['UUID'] = uuidmap[d['order']]
-        #         print('Your current order consists of ' + str(uuid) + str(user_order))
+    return user_order
 
-# def user_quit():
-#     if  == 'quit':
-#         print('***********************************\n** Your order has been completed\
-#         ''**\n***********************************\n')
+def user_quit():
+    quit_return = 'quit()'
+    user_input = first_input
+    if user_input == 'quit':
+        print('***********************************\n** Your order has been completed\
+        ''**\n***********************************\n')
+        return quit_return
 
 if __name__ == "__main__":
     welcome_message()

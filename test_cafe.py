@@ -34,4 +34,4 @@ Rice: 4.0
 '''
 
 def test_user_input():
-    assert snakes_cafe.user_input_to_list() == ['']
+    assert snakes_cafe.user_input_to_list() == []
