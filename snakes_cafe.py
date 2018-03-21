@@ -1,11 +1,3 @@
-# menu = {
-#     'appetizers' : ['Appetizers:','----------', 'Wings', 'Cookies', 'Spring Rolls\n'],
-# 'entrees' : ['Entrees:', '----------','Salmon',
-#            'Steak', 'Meat Tornado', 'A Literal Garden\n'],
-# 'desserts' : ['Desserts:', '----------', 'Ice Cream', 'Cake', 'Pie\n'],
-# 'drinks' : ['Drinks', '----------', 'Coffee', 'Tea', 'Blood of the Innocent\n'],
-# }
-
 import uuid
 
 menu = {
@@ -49,27 +41,22 @@ menu = {
         'Apples': 1.00,
         'Rice': 4.00}
 }
-"""
-for key, value in menu.items():
-    for item, price in value.items():
-        print(item, price)
-"""
+
 user_order = []
 
 def welcome_message():
-    print('**************************************\n** Welcome to the Snakes\
-Cafe! **\n** Please see our menu below. **\n** To quit at any time,\
-type "quit" **\n**************************************')
+    print('**************************************\n\
+** Welcome to the Snakes Cafe! **\n\
+** Please see our menu below. **\n\
+** To quit at any time, type "quit" **\n\
+**************************************')
 
 
 def first_input():
-    initial_input = input('***********************************\n** What would you\
- like to order? ''**\n***********************************\n>')
+    initial_input = input('***********************************\n\
+** What would you like to order? ''**\n\
+***********************************\n>')
     return initial_input
-
-#     def continue_order(self):
-#         self.continue_order_input = input('***********************************\n** Are you finished with\
-# your order? Type "quit" if yes''**\n***********************************\n>')
 
 def print_menu():
     return_value = ''
@@ -79,7 +66,6 @@ def print_menu():
             return_value += '{}: {}\n' .format(item, price)
     return return_value
 
-
 # def user_input():
 #     initial_input = input('***********************************\n** What would you\
 #  like to order? ''**\n***********************************\n')
@@ -88,12 +74,14 @@ def print_menu():
 # your order? Type "quit" if yes''**\n***********************************\n>')
 
 def user_input_to_list():
+    return_order = ['']
     while True: 
         user_input = first_input()
         # import pdb; pdb.set_trace()
         for item in menu:
             if user_input in item:
                 user_order.append(user_input)
+    return return_order
         #         uuidmap = {}
         # for d in user_order:
         #     if d['order'] not in uuidmap:
