@@ -46,7 +46,7 @@ def welcome_message():
     print('''**************************************\n** Welcome to the Snakes\
 Cafe! **\n** Please see our menu below. **\n** To quit at any time,\
 type "quit" **\n**************************************''')
-    for key, value in menu.items():
+    for key in menu.items['appetizers'].keys():
         for item, price in value.items():
             print(item, price)
 
