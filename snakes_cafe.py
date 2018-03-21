@@ -39,38 +39,60 @@ menu = {
         'Apples': 1.00,
         'Rice': 4.00}
 }
-
-user_order = []
-
+"""
 for key, value in menu.items():
     for item, price in value.items():
         print(item, price)
-# print(key, value)
+user_order = []
+"""
 
-user_input = input('***********************************\n** What would you\
- like to order? ''**\n***********************************\n')
+def welcome_message():
+    print('**************************************\n** Welcome to the Snakes\
+Cafe! **\n** Please see our menu below. **\n** To quit at any time,\
+type "quit" **\n**************************************')
 
 
-# continue_order = input('***********************************\n** Are you finished with\
-# your order? Type "quit" if yes''**\n***********************************\n')
+def first_input():
+    initial_input = input('***********************************\n** What would you\
+ like to order? ''**\n***********************************\n>')
+    return initial_input
 
-counter = 1
+#     def continue_order(self):
+#         self.continue_order_input = input('***********************************\n** Are you finished with\
+# your order? Type "quit" if yes''**\n***********************************\n>')
+
+def print_menu():
+    return_value = ''
+    for value in menu.values():
+        for item, price in value.items():
+            print('{}: {}' .format(item, price))
+            return_value += '{}: {}\n' .format(item, price)
+    return return_value
+
+
+# def user_input():
+#     initial_input = input('***********************************\n** What would you\
+#  like to order? ''**\n***********************************\n')
+
+#     continue_order = input('***********************************\n** Are you finished with\
+# your order? Type "quit" if yes''**\n***********************************\n>')
+
+def user_input_to_list():
+    while True: 
+        user_input = first_input()
+        # import pdb; pdb.set_trace()
+        for item in menu:
+            if user_input in item:
+                user_order.append(user_input)
+                print('Your current order consists of ' + str(user_order))
+
+# def user_quit():
+#     if  == 'quit':
+#         print('***********************************\n** Your order has been completed\
+#         ''**\n***********************************\n')
 
 if __name__ == "__main__":
-    print('**************************************\n** Welcome to the Snakes\
-    Cafe! **\n** Please see our menu below. **\n** To quit at any time,\
-    type "quit" **\n**************************************')
-
-while True:
-    continue_order = input('***********************************\n** Are you finished\
-with your order? Type "quit" if yes''**\n***********************************\n')
-    if continue_order in menu.items():
-        user_order.append(continue_order)
-        print('Your current order consists of ' + str(user_order))
-        counter += user_input
-    """else:
-        continue_order = 'quit()'
-        print('***********************************\n** Your order has been completed\
-        ''**\n***********************************\n')
-        break
-"""
+    welcome_message()
+    print_menu()
+    user_input_to_list()
+    # user_quit()
