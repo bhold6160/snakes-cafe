@@ -58,7 +58,11 @@ def get_user_input():
 ** What would you like to order? ''**\n\
 ***********************************\n>')
 
-
+def print_order():
+    order_summary = 'Order #{}\n'.format(uuid.uuid4())
+    for item in user_order:
+        order_summary += str(user_order)
+        return order_summary
 
 def print_menu():
     return_value = ''
@@ -107,11 +111,11 @@ def main():
     while True:
         user_input = get_user_input()
         output = check_user_input(user_input, menu.values())
-        if output is False:
+        if output is None:
             print('Not on the Menu. Try again...')
-            return
+            continue
         user_order.append(user_input)
-        print(user_order)
+        print(print_order())
 
 if __name__ == "__main__":
     main()
