@@ -64,7 +64,7 @@ def print_menu():
     for value in menu.values():
         for item, price in value.items():
             item_str = item.ljust(20)
-            price_str = ('$' + str(price[0]) + '0').rjust(30)
+            price_str = ('$' + str(price[0]) + '0').rjust(15)
             new_str = item_str + price_str
             print(new_str)
             return_value += '{}: ${p:0.2f}\n' .format(item, p=price[0])
