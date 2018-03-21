@@ -78,13 +78,21 @@ def user_input_to_list():
                 user_order.append(user_input)
     return user_order
 
-def user_quit():
-    quit_return = 'quit()'
-    user_input = first_input
-    if user_input == 'quit':
-        print('***********************************\n** Your order has been completed\
-        ''**\n***********************************\n')
-        return quit_return
+def exit_program():
+    exit(0)
+
+def check_user_input(guess, answer):
+    if guess == 'quit':
+        exit_program()
+    return guess == answer
+
+# def user_quit():
+#     quit_return = 'quit()'
+#     user_input = first_input
+#     if user_input == 'quit':
+#         print('***********************************\n** Your order has been completed\
+#         ''**\n***********************************\n')
+#         return quit_return
 
 if __name__ == "__main__":
     welcome_message()
