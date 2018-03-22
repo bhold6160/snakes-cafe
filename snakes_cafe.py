@@ -146,4 +146,7 @@ def main():
         add_order(user_input)
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        pass
