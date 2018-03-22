@@ -78,11 +78,11 @@ def exit_program():
     exit(0)
 
 
-def check_user_input(guess, answers):
-    if guess == 'quit':
+def check_user_input(input_in, answers):
+    if input_in == 'quit':
         exit_program()
     for answer in answers:
-        if guess in answer:
+        if input_in in answer:
             return True
 
 def print_order():
@@ -121,7 +121,7 @@ def main():
             print('Not on the Menu. Try again...')
             continue
         user_order.append(user_input)
-        print(print_order())
+        print(user_order[0] + ' has been added to your order')
 
 if __name__ == "__main__":
     main()
