@@ -43,7 +43,7 @@ menu = {
     }
 }
 
-user_order = []
+user_order = {}
 
 
 def welcome_message():
@@ -60,7 +60,7 @@ def print_menu():
     for key, value in menu.items():
         print('\n{}\n----------\n' .format(key))
         """
-        Input from the user for menu item
+        The above section shows the categories and the break line. The bottom section shows the full menu and price.
         """
         for item, price in value.items():
             item_str = item.ljust(20)
@@ -93,6 +93,7 @@ def check_user_input(guess, answers):
     for answer in answers:
         if guess in answer:
             return True
+
 
 def print_order():
     order_summary = 'Order #{}\n'.format(uuid.uuid4())
