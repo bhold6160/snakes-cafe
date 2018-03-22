@@ -59,9 +59,10 @@ def print_menu():
     return_value = ''
     for key, value in menu.items():
         print('\n{}\n----------\n' .format(key))
-        """
-        The above section shows the categories and the break line. The bottom section shows the full menu and price.
-        """
+
+        '''
+        Input from the user for menu item
+        '''
         for item, price in value.items():
             item_str = item.ljust(20)
             price_str = ('$' + str(price[0]) + '0').rjust(15)
@@ -72,75 +73,86 @@ def print_menu():
 
 
 def get_user_input():
-    """
+    '''
     Input from the user for menu item
-    """
+    '''
     return input('***********************************\n\
 ** What would you like to order? ''**\n\
-***********************************\n>').title()
+***********************************\n->').title()
 
 
 def exit_program():
     exit(0)
 
 
-def check_user_input(guess, answers):
-    """
-    This checks if the
-    """
-    if guess == 'quit':
-        exit_program()
+def check_menu(input_in, answers):
     for answer in answers:
-        if guess in answer:
+        if input_in in answer:
             return True
 
 
-def print_order():
+def check_user_input():
+    user_input = input('->')
+    if user_input == 'quit':
+        print('Order Complete')
+        exit_program()
+    elif user_input == 'order':
+        print_order(user_order)
+    else:
+        add_order(user_input)
+    return user_input
+
+
+# def print_order():
+#     order_summary = 'Order #{}\n'.format(uuid.uuid4())
+#     for item in user_order:
+#         for option in menu:
+#             if item in menu[option]:
+#                 count = menu[option][item][1]
+#         order_summary += str(item) + ' x ' + str(count)
+#     return order_summary
+
+
+def print_order(user_order):
     order_summary = 'Order #{}\n'.format(uuid.uuid4())
-    for item in user_order:
-        for option in menu:
-            if item in menu[option]:
-                count = menu[option][item][1]
-        order_summary += str(item) + ' x ' + str(count)
-    return order_summary
+    for item, quantity in user_order.items():
+        order_summary += '\n{}: {}'.format(item, quantity)
+        return order_summary
 
 
-# def response(output):
-#     '''
-#     Checking user input 
-#     '''
-#     if output is True:
-#         check_order_complete = input('\
-# ***********************************\n\
-# ** Are you finished with your order? Type "quit" if yes''**\n\
-# ***********************************\n>')
-#     if check_order_complete == 'quit':
-#         return True
-#     else:
-#         return 'Try again...'
+def add_order(item):
+    if item in user_order:
+        user_order[item] = user_order[item] + 1 if item in user_order else 1
+        print('{} has been added to your order' .format(item))
+        return item
 
-def count_order_items():
-    if user_input is True:
-        pass
+
+def remove_item(item):
+    if item in user_order:
+        user_order[item] -= 1
+        if user_order[item] == 0:
+            del user_order[item]
+            print('{} has been removed from your order' .format(item))
+        else:
+            print('{} not found' .format(item))
 
 
 def main():
-    '''
-    Main function which is our entry point to the application when run
-    '''
     welcome_message()
     print_menu()
+    get_user_input()
 
     while True:
-        user_input = get_user_input()
+        user_input = check_user_input()
 
-        user_output = check_user_input(user_input, menu.values())
+        user_output = check_menu(user_input, menu.values())
         if user_output is None:
             print('Not on the Menu. Try again...')
             continue
-        user_order.append(user_input)
-        print(print_order())
-
+        add_order(user_input)
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        pass
