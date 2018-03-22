@@ -1,7 +1,7 @@
 import uuid
 
 menu = {
-    'appetizers': {
+    'Appetizers': {
         'Wings': [8.00, 0],
         'Spring Rolls': [5.00, 0],
         'Cookies': [2.00, 0],
@@ -9,7 +9,7 @@ menu = {
         'Crab Wonton': [6.00, 0],
         'Satay': [7.00, 0]
     },
-    'entrees': {
+    'Entrees': {
         'Salmon': [15.00, 0],
         'Steak': [20.00, 0],
         'Meat Tornado': [25.00, 0],
@@ -17,7 +17,7 @@ menu = {
         'Pad Thai': [10.00, 0],
         'Spicy Meatballs': [12.00, 0]
     },
-    'desserts': {
+    'Desserts': {
         'Ice Cream': [6.00, 0],
         'Cake': [6.00, 0],
         'Pie': [7.00, 0],
@@ -25,7 +25,7 @@ menu = {
         'Mushroom Yogurt': [5.00, 0],
         'Popsicle': [3.00, 0]
     },
-    'drinks': {
+    'Drinks': {
         'Coffee': [3.00, 0],
         'Tea': [2.00, 0],
         'Blood of the Innocent': [50.00, 0],
@@ -33,7 +33,7 @@ menu = {
         'Martini': [11.00, 0],
         'Italian Lemondrop': [10.00, 0]
     },
-    'sides': {
+    'Sides': {
         'Bread': [2.00, 0],
         'Hot Peppers': [1.00, 0],
         'Potatoes': [3.00, 0],
@@ -53,17 +53,15 @@ def welcome_message():
 **************************************')
     return welcome
 
-def get_user_input():
-    return input('***********************************\n\
-** What would you like to order? ''**\n\
-***********************************\n>')
-
-
 
 def print_menu():
     return_value = ''
-    for value in menu.values():
+    for key, value in menu.items():
+        print('\n{}\n----------\n' .format(key))
         for item, price in value.items():
+    """
+    This takes the menu items/price and formats them on the screen.
+    """
             item_str = item.ljust(20)
             price_str = ('$' + str(price[0]) + '0').rjust(15)
             new_str = item_str + price_str
@@ -71,36 +69,45 @@ def print_menu():
             return_value += '{}: ${p:0.2f}\n' .format(item, p=price[0])
     return return_value
 
-#     continue_order = input('***********************************\n** Are you finished with\
-# your order? Type "quit" if yes''**\n***********************************\n>')
 
-def user_input_to_list():
-    while True: 
-        user_input = get_user_input()
-        # import pdb; pdb.set_trace()
-        for item in menu:
-            if user_input in item:
-                user_order.append(user_input)
-    return user_order
+def get_user_input():
+    """
+    Input from the user for menu item
+    """
+    return input('***********************************\n\
+** What would you like to order? ''**\n\
+***********************************\n>')
+
+
+#def count_order_items():
+    #if check_user_input[]
+
 
 def exit_program():
     exit(0)
 
-def check_user_input(guess, answer):
+
+def check_user_input(guess, answers):
+    """
+    This checks if the
+    """
     if guess == 'quit':
         exit_program()
-    return guess == answer
+    for answer in answers:
+        if guess in answer:
+            return True
 
 
 def response(output):
-    '''Doc strings are good'''
     if output is True:
-        return '''
-        ***********************************\n\
-        ** Are you finished with your order? Type "quit" if yes''**\n\
-        ***********************************\n>
-        '''
-    return 'Try Again...'
+        check_order_complete = input('\
+***********************************\n\
+** Are you finished with your order? Type "quit" if yes''**\n\
+***********************************\n>')
+    if check_order_complete == 'quit':
+        return True
+    else:
+        return 'Try again...'
 
 
 def main():
@@ -112,16 +119,13 @@ def main():
 
     while True:
         user_input = get_user_input()
-        try:
-            output = check_user_input(user_input, menu.values())
-        except TypeError:
-            print(response(False))
-
-        if output is True:
-            print(response(output))
-            break
+        output = check_user_input(user_input, menu.values())
+        if output is None:
+            print('Not on the Menu. Try again...')
+            continue
+        user_order.append(user_input)
+        print(user_order)
 
 
 if __name__ == "__main__":
     main()
-    # user_input_to_list()
