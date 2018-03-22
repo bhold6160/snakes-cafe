@@ -1,7 +1,7 @@
 import uuid
 
 menu = {
-    'appetizers': {
+    'Appetizers': {
         'Wings': [8.00, 0],
         'Spring Rolls': [5.00, 0],
         'Cookies': [2.00, 0],
@@ -9,7 +9,7 @@ menu = {
         'Crab Wonton': [6.00, 0],
         'Satay': [7.00, 0]
     },
-    'entrees': {
+    'Entrees': {
         'Salmon': [15.00, 0],
         'Steak': [20.00, 0],
         'Meat Tornado': [25.00, 0],
@@ -17,7 +17,7 @@ menu = {
         'Pad Thai': [10.00, 0],
         'Spicy Meatballs': [12.00, 0]
     },
-    'desserts': {
+    'Desserts': {
         'Ice Cream': [6.00, 0],
         'Cake': [6.00, 0],
         'Pie': [7.00, 0],
@@ -25,7 +25,7 @@ menu = {
         'Mushroom Yogurt': [5.00, 0],
         'Popsicle': [3.00, 0]
     },
-    'drinks': {
+    'Drinks': {
         'Coffee': [3.00, 0],
         'Tea': [2.00, 0],
         'Blood of the Innocent': [50.00, 0],
@@ -33,7 +33,7 @@ menu = {
         'Martini': [11.00, 0],
         'Italian Lemondrop': [10.00, 0]
     },
-    'sides': {
+    'Sides': {
         'Bread': [2.00, 0],
         'Hot Peppers': [1.00, 0],
         'Potatoes': [3.00, 0],
@@ -58,7 +58,10 @@ def welcome_message():
 def print_menu():
     return_value = ''
     for key, value in menu.items():
-        print('\n{}\n----------\n' .format(key))   
+        print('\n{}\n----------\n' .format(key))
+        """
+        Input from the user for menu item
+        """
         for item, price in value.items():
             item_str = item.ljust(20)
             price_str = ('$' + str(price[0]) + '0').rjust(15)
@@ -69,9 +72,12 @@ def print_menu():
 
 
 def get_user_input():
+    """
+    Input from the user for menu item
+    """
     return input('***********************************\n\
 ** What would you like to order? ''**\n\
-***********************************\n>')
+***********************************\n>').title()
 
 
 def exit_program():
@@ -79,6 +85,9 @@ def exit_program():
 
 
 def check_user_input(input_in, answers):
+    """
+    This checks if the
+    """
     if input_in == 'quit':
         exit_program()
     for answer in answers:
@@ -88,8 +97,11 @@ def check_user_input(input_in, answers):
 def print_order():
     order_summary = 'Order #{}\n'.format(uuid.uuid4())
     for item in user_order:
-        order_summary += str(user_order)
-        return order_summary
+        for option in menu:
+            if item in menu[option]:
+                count = menu[option][item][1]
+        order_summary += str(item) + ' x ' + str(count)
+    return order_summary
 
 
 # def response(output):
@@ -106,6 +118,10 @@ def print_order():
 #     else:
 #         return 'Try again...'
 
+# def count_order_items():
+#     if user_input is True:
+#         pass
+
 
 def main():
     '''
@@ -116,12 +132,14 @@ def main():
 
     while True:
         user_input = get_user_input()
+
         user_output = check_user_input(user_input, menu.values())
         if user_output is None:
             print('Not on the Menu. Try again...')
             continue
         user_order.append(user_input)
         print(user_order[0] + ' has been added to your order')
+
 
 if __name__ == "__main__":
     main()
