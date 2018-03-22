@@ -45,6 +45,7 @@ menu = {
 
 user_order = []
 
+
 def welcome_message():
     welcome = print('**************************************\n\
 ** Welcome to the Snakes Cafe! **\n\
@@ -58,10 +59,10 @@ def print_menu():
     return_value = ''
     for key, value in menu.items():
         print('\n{}\n----------\n' .format(key))
+        """
+        Input from the user for menu item
+        """
         for item, price in value.items():
-    """
-    This takes the menu items/price and formats them on the screen.
-    """
             item_str = item.ljust(20)
             price_str = ('$' + str(price[0]) + '0').rjust(15)
             new_str = item_str + price_str
@@ -76,11 +77,7 @@ def get_user_input():
     """
     return input('***********************************\n\
 ** What would you like to order? ''**\n\
-***********************************\n>')
-
-
-#def count_order_items():
-    #if check_user_input[]
+***********************************\n>').title()
 
 
 def exit_program():
@@ -97,34 +94,51 @@ def check_user_input(guess, answers):
         if guess in answer:
             return True
 
+def print_order():
+    order_summary = 'Order #{}\n'.format(uuid.uuid4())
+    for item in user_order:
+        for option in menu:
+            if item in menu[option]:
+                count = menu[option][item][1]
+        order_summary += str(item) + ' x ' + str(count)
+    return order_summary
 
-def response(output):
-    if output is True:
-        check_order_complete = input('\
-***********************************\n\
-** Are you finished with your order? Type "quit" if yes''**\n\
-***********************************\n>')
-    if check_order_complete == 'quit':
-        return True
-    else:
-        return 'Try again...'
+
+# def response(output):
+#     '''
+#     Checking user input 
+#     '''
+#     if output is True:
+#         check_order_complete = input('\
+# ***********************************\n\
+# ** Are you finished with your order? Type "quit" if yes''**\n\
+# ***********************************\n>')
+#     if check_order_complete == 'quit':
+#         return True
+#     else:
+#         return 'Try again...'
+
+def count_order_items():
+    if user_input is True:
+        pass
 
 
 def main():
     '''
-    Main function which acts as an entry point to the application when run as a script
+    Main function which is our entry point to the application when run
     '''
     welcome_message()
     print_menu()
 
     while True:
         user_input = get_user_input()
-        output = check_user_input(user_input, menu.values())
-        if output is None:
+
+        user_output = check_user_input(user_input, menu.values())
+        if user_output is None:
             print('Not on the Menu. Try again...')
             continue
         user_order.append(user_input)
-        print(user_order)
+        print(print_order())
 
 
 if __name__ == "__main__":
