@@ -59,9 +59,9 @@ def print_menu():
     return_value = ''
     for key, value in menu.items():
         print('\n{}\n----------\n' .format(key))
-        """
+        '''
         Input from the user for menu item
-        """
+        '''
         for item, price in value.items():
             item_str = item.ljust(20)
             price_str = ('$' + str(price[0]) + '0').rjust(15)
@@ -72,9 +72,9 @@ def print_menu():
 
 
 def get_user_input():
-    """
+    '''
     Input from the user for menu item
-    """
+    '''
     return input('***********************************\n\
 ** What would you like to order? ''**\n\
 ***********************************\n->').title()
@@ -84,21 +84,26 @@ def exit_program():
     exit(0)
 
 
-def check_user_dict(input_in, answers):
+def check_menu(input_in, answers):
     for answer in answers:
         if input_in in answer:
             return True
 
 def check_user_input():
-    while 1:
-        user_input = input('->')
-        if user_input == 'quit':
-            print('Order Complete')
-            break
-        elif user_input == 'order':
-            print(user_order)
-        else:
-            add_order(user_input)
+    user_input = input('->')
+    if user_input == 'quit':
+        print('Order Complete')
+        exit_program()
+    elif user_input == 'order':
+        print(user_order)
+    else:
+        add_order(user_input)
+    return user_input
+
+# def check_user_input(item):
+#     for item in user_order:
+#         for option in menu:
+#             if item in menu[option]:
 
 
 def print_order():
@@ -148,16 +153,13 @@ def remove_item(item):
 
 
 def main():
-    '''
-    Main function which is our entry point to the application when run
-    '''
     welcome_message()
     print_menu()
 
     while True:
         user_input = check_user_input()
 
-        user_output = check_user_dict(user_input, menu.values())
+        user_output = check_menu(user_input, menu.values())
         if user_output is None:
             print('Not on the Menu. Try again...')
             continue
