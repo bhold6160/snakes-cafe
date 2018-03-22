@@ -95,25 +95,27 @@ def check_user_input():
         print('Order Complete')
         exit_program()
     elif user_input == 'order':
-        print(user_order)
+        print_order(user_order)
     else:
         add_order(user_input)
     return user_input
 
-# def check_user_input(item):
+
+# def print_order():
+#     order_summary = 'Order #{}\n'.format(uuid.uuid4())
 #     for item in user_order:
 #         for option in menu:
 #             if item in menu[option]:
+#                 count = menu[option][item][1]
+#         order_summary += str(item) + ' x ' + str(count)
+#     return order_summary
 
 
-def print_order():
+def print_order(user_order):
     order_summary = 'Order #{}\n'.format(uuid.uuid4())
-    for item in user_order:
-        for option in menu:
-            if item in menu[option]:
-                count = menu[option][item][1]
-        order_summary += str(item) + ' x ' + str(count)
-    return order_summary
+    for item, quantity in user_order.items():
+        order_summary += '\n{}: {}'.format(item, quantity)
+        return order_summary
 
 
 def add_order(item):
@@ -133,28 +135,10 @@ def remove_item(item):
             print('{} not found' .format(item))
 
 
-# def response(output):
-#     '''
-#     Checking user input 
-#     '''
-#     if output is True:
-#         check_order_complete = input('\
-# ***********************************\n\
-# ** Are you finished with your order? Type "quit" if yes''**\n\
-# ***********************************\n>')
-#     if check_order_complete == 'quit':
-#         return True
-#     else:
-#         return 'Try again...'
-
-# def count_order_items():
-#     if user_input is True:
-#         pass
-
-
 def main():
     welcome_message()
     print_menu()
+    get_user_input()
 
     while True:
         user_input = check_user_input()
