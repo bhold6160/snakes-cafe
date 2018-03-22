@@ -2,43 +2,43 @@ import uuid
 
 menu = {
     'Appetizers': {
-        'Wings': 8.00 ,
-        'Spring Rolls': 5.00 ,
-        'Cookies': 2.00 ,
-        'Grilled Squid': 8.00 ,
-        'Crab Wonton': 6.00 ,
+        'Wings': 8.00,
+        'Spring Rolls': 5.00,
+        'Cookies': 2.00,
+        'Grilled Squid': 8.00,
+        'Crab Wonton': 6.00,
         'Satay': 7.00 
     },
     'Entrees': {
-        'Salmon': 15.00 ,
-        'Steak': 20.00 ,
-        'Meat Tornado': 25.00 ,
-        'A Literal Garden': 12.00 ,
-        'Pad Thai': 10.00 ,
+        'Salmon': 15.00,
+        'Steak': 20.00,
+        'Meat Tornado': 25.00,
+        'A Literal Garden': 12.00,
+        'Pad Thai': 10.00,
         'Spicy Meatballs': 12.00 
     },
     'Desserts': {
-        'Ice Cream': 6.00 ,
-        'Cake': 6.00 ,
-        'Pie': 7.00 ,
-        'Mango Sicky Rice': 6.00 ,
-        'Mushroom Yogurt': 5.00 ,
+        'Ice Cream': 6.00,
+        'Cake': 6.00,
+        'Pie': 7.00,
+        'Mango Sicky Rice': 6.00,
+        'Mushroom Yogurt': 5.00,
         'Popsicle': 3.00 
     },
     'Drinks': {
-        'Coffee': 3.00 ,
-        'Tea': 2.00 ,
-        'Innocent Blood': 50.00 ,
-        'Champagne': 8.00 ,
-        'Martini': 11.00 ,
+        'Coffee': 3.00,
+        'Tea': 2.00,
+        'Innocent Blood': 50.00,
+        'Champagne': 8.00,
+        'Martini': 11.00,
         'Italian Lemondrop': 10.00 
     },
     'Sides': {
-        'Bread': 2.00 ,
-        'Hot Peppers': 1.00 ,
-        'Potatoes': 3.00 ,
-        'Bacon': 5.00 ,
-        'Apples': 1.00 ,
+        'Bread': 2.00,
+        'Hot Peppers': 1.00,
+        'Potatoes': 3.00,
+        'Bacon': 5.00,
+        'Apples': 1.00,
         'Rice': 4.00 
     }
 }
@@ -83,12 +83,6 @@ def get_user_input():
 
 def exit_program():
     exit(0)
-
-
-# def check_menu(input_in, answers):
-#     for answer in answers:
-#         if input_in in [item.lower() for item in answer]:
-#             return True
 
 
 def check_user_input():
@@ -137,7 +131,6 @@ def remove_item(item):
 def main():
     welcome_message()
     print_menu()
-    # get_user_input()
 
     while True:
         user_input = check_user_input()
