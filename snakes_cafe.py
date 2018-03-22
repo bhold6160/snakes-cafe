@@ -103,6 +103,11 @@ def print_order():
         order_summary += str(item) + ' x ' + str(count)
     return order_summary
 
+def add_order(item):
+    if item in user_order:
+        print('{} has been added to your order' .format(item))
+        return item
+
 
 # def response(output):
 #     '''
@@ -138,8 +143,7 @@ def main():
             print('Not on the Menu. Try again...')
             continue
         user_order.append(user_input)
-        print(user_order[0] + ' has been added to your order')
-
+        add_order(user_input)
 
 if __name__ == "__main__":
     main()
