@@ -43,7 +43,7 @@ menu = {
     }
 }
 
-user_order = []
+user_order = {}
 
 
 def welcome_message():
@@ -77,22 +77,29 @@ def get_user_input():
     """
     return input('***********************************\n\
 ** What would you like to order? ''**\n\
-***********************************\n>').title()
+***********************************\n->').title()
 
 
 def exit_program():
     exit(0)
 
 
-def check_user_input(input_in, answers):
-    """
-    This checks if the
-    """
-    if input_in == 'quit':
-        exit_program()
+def check_user_dict(input_in, answers):
     for answer in answers:
         if input_in in answer:
             return True
+
+def check_user_input():
+    while 1:
+        user_input = input('->')
+        if user_input == 'quit':
+            print('Order Complete')
+            break
+        elif user_input == 'order':
+            print(user_order)
+        else:
+            add_order(user_input)
+
 
 def print_order():
     order_summary = 'Order #{}\n'.format(uuid.uuid4())
@@ -103,10 +110,22 @@ def print_order():
         order_summary += str(item) + ' x ' + str(count)
     return order_summary
 
+
 def add_order(item):
     if item in user_order:
+        user_order[item] = user_order[item] + 1 if item in user_order else 1
         print('{} has been added to your order' .format(item))
         return item
+
+
+def remove_item(item):
+    if item in user_order:
+        user_order[item] -= 1
+        if user_order[item] == 0:
+            del user_order[item]
+            print('{} has been removed from your order' .format(item))
+        else:
+            print('{} not found' .format(item))
 
 
 # def response(output):
@@ -136,13 +155,12 @@ def main():
     print_menu()
 
     while True:
-        user_input = get_user_input()
+        user_input = check_user_input()
 
-        user_output = check_user_input(user_input, menu.values())
+        user_output = check_user_dict(user_input, menu.values())
         if user_output is None:
             print('Not on the Menu. Try again...')
             continue
-        user_order.append(user_input)
         add_order(user_input)
 
 if __name__ == "__main__":
