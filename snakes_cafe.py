@@ -96,6 +96,7 @@ def check_user_input():
     Prompts user for input and listens for input
     '''
     user_input = input('->')
+    import pdb; pdb.set_trace()
     if user_input == 'quit':
         user_quit()
     elif user_input == 'order':
@@ -124,7 +125,7 @@ def place_order():
     '''
     Printing out the users finished order
     '''
-    print('Order #{}'.format(uuid4()))
+    # print('Order #{}'.format(uuid4()))
     print(print_order(basket))
 
 
@@ -144,12 +145,12 @@ def print_order(user_order):
     sub_total = calculate_total()
     order_tax_total = calculate_tax()
     final_total = order_tax_total + sub_total
-    # order_summary = 'Order #{}\n'.format(uuid4())
+    order_summary = 'Order #{}\n'.format(uuid4())
     for item, quantity in user_order.items():
         item = item.title()
         for category in menu.values():
             if item in category:
-                order_summary = '\n{}: {} ${}'.format(quantity, item, category[item])
+                order_summary += '\n{}: {} ${}'.format(quantity, item, category[item])
     order_summary += '\nSubtotal: ${}'.format(sub_total)
     order_summary += '\nTax: ${t:0.2f}'.format(t = order_tax_total)
     order_summary += '\nTotal: ${h:0.2f}'.format(h = final_total)
@@ -183,7 +184,6 @@ def add_order(item):
     Adds items to users total order
     '''
     for course in menu:
-        import pdb; pdb.set_trace()
         item = item.title()
         if item in menu[course]:
             if item in basket:
