@@ -214,6 +214,9 @@ def remove_item(item):
 
 
 def main():
+    '''
+    Main entry point for the app 
+    '''
     welcome_message()
     print_menu()
 
