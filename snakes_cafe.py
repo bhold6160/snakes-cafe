@@ -66,9 +66,6 @@ def print_menu():
     return_value = ''
     for key, value in menu.items():
         print('\n{}\n--------------------------------------\n' .format(key))
-        '''
-        Input from the user for menu item
-        '''
         for item, price in value.items():
             item_str = item.ljust(20)
             price_str = ('$' + str(price) + '0').rjust(15)
@@ -102,6 +99,7 @@ def check_user_input():
     if user_input == 'quit':
         user_quit()
     elif user_input == 'order':
+        print('Order #{}\n'.format(uuid4()))
         place_order()
     elif user_input.startswith('remove'):
         removed_item = user_input.split(' ')[-1]
@@ -121,6 +119,7 @@ def user_quit():
     '''
     print('Come back soon!')
     exit_program()
+
 
 def place_order():
     '''
@@ -145,12 +144,12 @@ def print_order(user_order):
     sub_total = calculate_total()
     order_tax_total = calculate_tax()
     final_total = order_tax_total + sub_total
-    order_summary = 'Order #{}\n'.format(uuid4())
+    # order_summary = 'Order #{}\n'.format(uuid4())
     for item, quantity in user_order.items():
         item = item.title()
         for category in menu.values():
             if item in category:
-                order_summary += '\n{}: {} ${}'.format(quantity, item, category[item])
+                order_summary = '\n{}: {} ${}'.format(quantity, item, category[item])
     order_summary += '\nSubtotal: ${}'.format(sub_total)
     order_summary += '\nTax: ${t:0.2f}'.format(t = order_tax_total)
     order_summary += '\nTotal: ${h:0.2f}'.format(h = final_total)
