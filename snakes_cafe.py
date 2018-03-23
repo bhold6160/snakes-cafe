@@ -99,7 +99,6 @@ def check_user_input():
     if user_input == 'quit':
         user_quit()
     elif user_input == 'order':
-        print('Order #{}\n'.format(uuid4()))
         place_order()
     elif user_input.startswith('remove'):
         removed_item = user_input.split(' ')[-1]
@@ -125,6 +124,7 @@ def place_order():
     '''
     Printing out the users finished order
     '''
+    print('Order #{}'.format(uuid4()))
     print(print_order(basket))
 
 
@@ -183,6 +183,7 @@ def add_order(item):
     Adds items to users total order
     '''
     for course in menu:
+        import pdb; pdb.set_trace()
         item = item.title()
         if item in menu[course]:
             if item in basket:
