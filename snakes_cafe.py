@@ -44,7 +44,7 @@ menu = {
     }
 }
 
-user_order = {}
+basket = {}
 tax = .101
 
 def welcome_message():
@@ -65,7 +65,7 @@ def print_menu():
     '''
     return_value = ''
     for key, value in menu.items():
-        print('\n{}\n----------\n' .format(key))
+        print('\n{}\n--------------------------------------\n' .format(key))
         '''
         Input from the user for menu item
         '''
@@ -82,9 +82,9 @@ def get_user_input():
     '''
     Input from the user for menu item
     '''
-    return input('***********************************\n\
+    print('***********************************\n\
 ** What would you like to order? ''**\n\
-***********************************\n->')
+***********************************\n')
 
 
 def exit_program():
@@ -126,7 +126,7 @@ def place_order():
     '''
     Printing out the users finished order
     '''
-    print(print_order(user_order))
+    print(print_order(basket))
 
 
 def categories_items(category):
@@ -162,7 +162,7 @@ def calculate_total():
     Calculating returning to the total number of items multiplied by their quantity
     '''
     order_total = 0
-    for item, quantity in user_order.items():
+    for item, quantity in basket.items():
         item = item.title()
         for category in menu.values():
             if item in category:
@@ -186,12 +186,12 @@ def add_order(item):
     for course in menu:
         item = item.title()
         if item in menu[course]:
-            if item in user_order:
-                user_order[item] = user_order[item] + 1
+            if item in basket:
+                basket[item] = basket[item] + 1
             else:
-                user_order[item] = 1
+                basket[item] = 1
             print('{} has been added to your order' .format(item))
-            print(print_order(user_order))
+            print(print_order(basket))
             return item
 
 
@@ -200,10 +200,10 @@ def remove_item(item):
     Will remove items when called
     '''
     item = item.title()
-    if item in user_order:
-        user_order[item] -= 1
-        if user_order[item] == 0:
-            del user_order[item]
+    if item in basket:
+        basket[item] -= 1
+        if basket[item] == 0:
+            del basket[item]
         print('{} has been removed from your order' .format(item))
     else:
         print('{} not found' .format(item))
@@ -222,6 +222,7 @@ def main():
     '''
     welcome_message()
     print_menu()
+    get_user_input()
 
     while True:
         user_input = check_user_input()
