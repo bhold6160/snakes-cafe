@@ -7,7 +7,13 @@ menu = {
         'Cookies': 2.00,
         'Grilled Squid': 8.00,
         'Crab Wonton': 6.00,
-        'Satay': 7.00 
+        'Satay': 7.00,
+        'Savory Tart': 10.00,
+        'Roasted Duck Salad': 12.00,
+        'Crostini Ai Funghi': 13.00,
+        'Lobster Raviolo Deconstructed': 17.00,
+        'Fresh Northwest Oysters': 15.00,
+        'Bagna Cauda': 14.00
     },
     'Entrees': {
         'Salmon': 15.00,
@@ -15,7 +21,13 @@ menu = {
         'Meat Tornado': 25.00,
         'A Literal Garden': 12.00,
         'Pad Thai': 10.00,
-        'Spicy Meatballs': 12.00 
+        'Spicy Meatballs': 12.00,
+        'Spicy Creole Andouille Hash': 15.00,
+        'Toulouse Beignets': 15.00,
+        'Dutch Baby': 10.00,
+        'Lamb Sliders': 17.00,
+        'Crab Nachos': 21.00,
+        'Chicken Parmesan': 19.00
     },
     'Desserts': {
         'Ice Cream': 6.00,
@@ -23,7 +35,13 @@ menu = {
         'Pie': 7.00,
         'Mango Sicky Rice': 6.00,
         'Mushroom Yogurt': 5.00,
-        'Popsicle': 3.00 
+        'Popsicle': 3.00,
+        'Butterfinger Cheesecake': 6.00,
+        'Banana Split': 7.00,
+        'Red Velvet Cake': 8.00,
+        'Chocolate Truffle': 8.00,
+        'Chocolate Fudge Cake': 8.00,
+        'Bailey\'s Irish Cream Cheesecake': 8.00
     },
     'Drinks': {
         'Coffee': 3.00,
@@ -31,7 +49,13 @@ menu = {
         'Innocent Blood': 50.00,
         'Champagne': 8.00,
         'Martini': 11.00,
-        'Italian Lemondrop': 10.00 
+        'Italian Lemondrop': 10.00,
+        'Pitcher And Catcher': 10.00,
+        'Regret': 15.00,
+        'Dark And Stormy': 11.00,
+        'Greek Martini': 12.5,
+        'White Wine': 12.00,
+        'Red Wine': 12.00
     },
     'Sides': {
         'Bread': 2.00,
@@ -39,7 +63,13 @@ menu = {
         'Potatoes': 3.00,
         'Bacon': 5.00,
         'Apples': 1.00,
-        'Rice': 4.00 
+        'Rice': 4.00,
+        'Noodles': 4.00,
+        'Eggs': 3.00,
+        'Corn': 4.00,
+        'Waffles': 6.00,
+        'Onions': 2.00,
+        'Chickpeas': 4.00
     }
 }
 
