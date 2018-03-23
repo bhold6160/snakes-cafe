@@ -180,7 +180,6 @@ def remove_item(item):
     '''
     Will remove items when called
     '''
-    # import pdb; pdb.set_trace()
     item = item.title()
     if item in user_order:
         user_order[item] -= 1
