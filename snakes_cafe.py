@@ -160,13 +160,8 @@ def user_quit():
 def place_order():
     """
     Printing out the users finished order
-<<<<<<< HEAD
-    '''
-    # print('Order #{}'.format(uuid4()))
-=======
     """
-    print('Order #{}\n'.format(uuid4()))
->>>>>>> 541ffbfe9c99e831ced1480b7594632c9216ebb6
+    print('Order #{}'.format(uuid4()))
     print(print_order(basket))
 
 
