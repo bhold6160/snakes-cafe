@@ -1,4 +1,5 @@
-import uuid
+from uuid import uuid4
+import csv
 
 menu = {
     'Appetizers': {
@@ -145,14 +146,23 @@ def check_user_input():
     return user_input
 
 def user_quit():
-    print('Order Complete')
+    '''
+    Exits the program
+    '''
+    print('Come back soon!')
     exit_program()
 
 def place_order():
+    '''
+    Printing out the users finished order
+    '''
     print(print_order(user_order))
 
 
 def categories_items(category):
+    '''
+    Retrieves categories from the dictionary and prints them to the user
+    '''
     category = category.title()
     for key in menu[category]:
         print(key)
@@ -165,7 +175,7 @@ def print_order(user_order):
     sub_total = calculate_total()
     order_tax_total = calculate_tax()
     final_total = order_tax_total + sub_total
-    order_summary = 'Order #{}\n'.format(uuid.uuid4())
+    order_summary = 'Order #{}\n'.format(uuid4())
     for item, quantity in user_order.items():
         item = item.title()
         for category in menu.values():
@@ -178,6 +188,9 @@ def print_order(user_order):
     return order_summary
 
 def calculate_total():
+    '''
+    Calculating returning to the total number of items multiplied by their quantity
+    '''
     order_total = 0
     for item, quantity in user_order.items():
         item = item.title()
@@ -188,6 +201,9 @@ def calculate_total():
     return order_total
 
 def calculate_tax():
+    '''
+    Calculating the tax by multiplying it by our total
+    '''
     tax_total = calculate_total() * tax
     return tax_total
 
@@ -220,8 +236,18 @@ def remove_item(item):
     else:
         print('{} not found' .format(item))
 
+# def optional_menu():
+
+#     menu_name = input('Please enter your menu name: ').strip()
+#     try:
+#         with open as csvfile
+
+
 
 def main():
+    '''
+    Main entry point for the app 
+    '''
     welcome_message()
     print_menu()
 
