@@ -1,4 +1,5 @@
-import uuid
+from uuid import uuid4
+import csv
 
 menu = {
     'Appetizers': {
@@ -134,7 +135,7 @@ def print_order(user_order):
     sub_total = calculate_total()
     order_tax_total = calculate_tax()
     final_total = order_tax_total + sub_total
-    order_summary = 'Order #{}\n'.format(uuid.uuid4())
+    order_summary = 'Order #{}\n'.format(uuid4())
     for item, quantity in user_order.items():
         item = item.title()
         for category in menu.values():
@@ -188,6 +189,13 @@ def remove_item(item):
         print('{} has been removed from your order' .format(item))
     else:
         print('{} not found' .format(item))
+
+# def optional_menu():
+
+#     menu_name = input('Please enter your menu name: ').strip()
+#     try:
+#         with open as csvfile
+
 
 
 def main():
