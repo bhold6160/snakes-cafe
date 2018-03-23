@@ -74,13 +74,13 @@ menu = {
     }
 }
 
-user_order = {}
+basket = {}
 tax = .101
 
 def welcome_message():
-    '''
+    """
     Prints the welcome message to the user
-    '''
+    """
     welcome = print('**************************************\n\
 ** Welcome to the Snakes Cafe! **\n\
 ** Please see our menu below. **\n\
@@ -90,13 +90,13 @@ def welcome_message():
 
 
 def print_menu():
-    '''
+    """
     Prints the menu to the user
-    '''
+    """
     return_value = ''
     for key, value in menu.items():
-        print('\n{}\n----------\n' .format(key))
 
+        print('\n{}\n--------------------------------------\n' .format(key))
         '''
         Input from the user for menu item
         '''
@@ -110,18 +110,18 @@ def print_menu():
 
 
 def get_user_input():
-    '''
+    """
     Input from the user for menu item
-    '''
-    return input('***********************************\n\
+    """
+    print('***********************************\n\
 ** What would you like to order? ''**\n\
-***********************************\n->')
+***********************************')
 
 
 def exit_program():
-    '''
+    """
     Will exit program when called
-    '''
+    """
     exit(0)
 
 
@@ -148,37 +148,39 @@ def check_user_input():
         else:
             add_order(user_input[0], user_input[1])
     return user_input
+    
 
 
 def user_quit():
-    '''
+    """
     Exits the program
-    '''
+    """
     print('Come back soon!')
     exit_program()
 
 
 def place_order():
-    '''
+    """
     Printing out the users finished order
-    '''
+    """
     print('Order #{}\n'.format(uuid4()))
-    print(print_order(user_order))
+    print(print_order(basket))
+
 
 
 def categories_items(category):
-    '''
+    """
     Retrieves categories from the dictionary and prints them to the user
-    '''
+    """
     category = category.title()
     for key in menu[category]:
         print(key)
 
 
 def print_order(user_order):
-    '''
+    """
     Prints order when user is finished selecting items
-    '''
+    """
     sub_total = calculate_total()
     order_tax_total = calculate_tax()
     final_total = order_tax_total + sub_total
@@ -191,15 +193,15 @@ def print_order(user_order):
     order_summary += '\nSubtotal: ${:0.2f}'.format(sub_total)
     order_summary += '\nTax: ${t:0.2f}'.format(t = order_tax_total)
     order_summary += '\nTotal: ${h:0.2f}'.format(h = final_total)
-
     return order_summary
 
+
 def calculate_total():
-    '''
+    """
     Calculating returning to the total number of items multiplied by their quantity
-    '''
+    """
     order_total = 0
-    for item, quantity in user_order.items():
+    for item, quantity in basket.items():
         item = item.title()
         for category in menu.values():
             if item in category:
@@ -207,44 +209,48 @@ def calculate_total():
                 order_total += item_price
     return order_total
 
+
 def calculate_tax():
-    '''
+    """
     Calculating the tax by multiplying it by our total
-    '''
+    """
     tax_total = calculate_total() * tax
     return tax_total
 
 
 def add_order(item, quantity=1):
-    '''
+
+    """
     Adds items to users total order
-    '''
+    """
     for course in menu:
         if type(item) == list:
             item = item[0]
         item = item.title()
         if item in menu[course]:
-            if item in user_order:
-                user_order[item] = user_order[item] + int(quantity)
-                print('{} {} has been added to your order'.format(user_order[item], item))
+            if item in basket:
+                basket[item] = basket[item] + int(quantity)
+                print('{} {} has been added to your order'.format(basket[item], item))
             else:
-                user_order[item] = 1
+                basket[item] = 1
                 print('{} has been added to your order' .format(item))
+
             return item
 
 
 def remove_item(item):
-    '''
+    """
     Will remove items when called
-    '''
+    """
     item = item.title()
-    if item in user_order:
-        user_order[item] -= 1
-        if user_order[item] == 0:
-            del user_order[item]
+    if item in basket:
+        basket[item] -= 1
+        if basket[item] == 0:
+            del basket[item]
         print('{} has been removed from your order' .format(item))
     else:
         print('{} not found' .format(item))
+
 
 # def optional_menu():
 
@@ -253,19 +259,20 @@ def remove_item(item):
 #         with open as csvfile
 
 
-
 def main():
-    '''
+    """
     Main entry point for the app 
-    '''
+    """
     welcome_message()
     print_menu()
+    get_user_input()
 
     while True:
         user_input = check_user_input()
         if user_input is None:
             print('Not on the Menu. Try again...')
             continue
+
 
 if __name__ == "__main__":
     try:
