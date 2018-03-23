@@ -113,6 +113,7 @@ def check_user_input():
     else:
         add_order(user_input)
     return user_input
+    
 
 def user_quit():
     '''
@@ -156,6 +157,7 @@ def print_order(user_order):
 
     return order_summary
 
+
 def calculate_total():
     '''
     Calculating returning to the total number of items multiplied by their quantity
@@ -169,12 +171,14 @@ def calculate_total():
                 order_total += item_price
     return order_total
 
+
 def calculate_tax():
     '''
     Calculating the tax by multiplying it by our total
     '''
     tax_total = calculate_total() * tax
     return tax_total
+
 
 def add_order(item):
     '''
@@ -205,12 +209,12 @@ def remove_item(item):
     else:
         print('{} not found' .format(item))
 
+
 # def optional_menu():
 
 #     menu_name = input('Please enter your menu name: ').strip()
 #     try:
 #         with open as csvfile
-
 
 
 def main():
@@ -225,6 +229,7 @@ def main():
         if user_input is None:
             print('Not on the Menu. Try again...')
             continue
+
 
 if __name__ == "__main__":
     try:
