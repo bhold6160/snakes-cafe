@@ -126,9 +126,9 @@ def exit_program():
 
 
 def check_user_input():
-    '''
+    """
     Prompts user for input and listens for input
-    '''
+    """
     user_input = input('->')
     if user_input == 'quit':
         user_quit()
@@ -142,8 +142,13 @@ def check_user_input():
     elif user_input.title() in menu:
         categories_items(user_input)
     else:
-        add_order(user_input)
+        user_input = user_input.split(' ')
+        if len(user_input) == 1:
+            add_order(user_input)
+        else:
+            add_order(user_input[0], user_input[1])
     return user_input
+
 
 def user_quit():
     '''
@@ -152,10 +157,12 @@ def user_quit():
     print('Come back soon!')
     exit_program()
 
+
 def place_order():
     '''
     Printing out the users finished order
     '''
+    print('Order #{}\n'.format(uuid4()))
     print(print_order(user_order))
 
 
@@ -175,13 +182,13 @@ def print_order(user_order):
     sub_total = calculate_total()
     order_tax_total = calculate_tax()
     final_total = order_tax_total + sub_total
-    order_summary = 'Order #{}\n'.format(uuid4())
+    order_summary = ' '
     for item, quantity in user_order.items():
         item = item.title()
         for category in menu.values():
             if item in category:
-                order_summary += '\n{}: {} ${}'.format(quantity, item, category[item])
-    order_summary += '\nSubtotal: ${}'.format(sub_total)
+                order_summary += '\n{}: {} ${:0.2f}'.format(quantity, item, category[item])
+    order_summary += '\nSubtotal: ${:0.2f}'.format(sub_total)
     order_summary += '\nTax: ${t:0.2f}'.format(t = order_tax_total)
     order_summary += '\nTotal: ${h:0.2f}'.format(h = final_total)
 
@@ -207,19 +214,22 @@ def calculate_tax():
     tax_total = calculate_total() * tax
     return tax_total
 
-def add_order(item):
+
+def add_order(item, quantity=1):
     '''
     Adds items to users total order
     '''
     for course in menu:
+        if type(item) == list:
+            item = item[0]
         item = item.title()
         if item in menu[course]:
             if item in user_order:
-                user_order[item] = user_order[item] + 1
+                user_order[item] = user_order[item] + int(quantity)
+                print('{} {} has been added to your order'.format(user_order[item], item))
             else:
                 user_order[item] = 1
-            print('{} has been added to your order' .format(item))
-            print(print_order(user_order))
+                print('{} has been added to your order' .format(item))
             return item
 
 
