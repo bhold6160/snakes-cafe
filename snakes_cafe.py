@@ -77,6 +77,12 @@ def print_menu():
     return return_value
 
 
+def categories_items():
+    for key, value in menu.items():
+        return print('{}\n{}'.format(key, value))
+    
+
+
 def get_user_input():
     '''
     Input from the user for menu item
@@ -107,6 +113,8 @@ def check_user_input():
         remove_item(removed_item)
     elif user_input == 'menu':
         print_menu()
+    elif user_input == menu:
+        categories_items()
     else:
         add_order(user_input)
     return user_input
