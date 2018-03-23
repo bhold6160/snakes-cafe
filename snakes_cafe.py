@@ -154,7 +154,6 @@ def print_order(user_order):
     order_summary += '\nSubtotal: ${}'.format(sub_total)
     order_summary += '\nTax: ${t:0.2f}'.format(t = order_tax_total)
     order_summary += '\nTotal: ${h:0.2f}'.format(h = final_total)
-
     return order_summary
 
 
