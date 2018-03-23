@@ -44,9 +44,12 @@ menu = {
 }
 
 user_order = {}
-
+tax = .101
 
 def welcome_message():
+    '''
+    Prints the welcome message to the user
+    '''
     welcome = print('**************************************\n\
 ** Welcome to the Snakes Cafe! **\n\
 ** Please see our menu below. **\n\
@@ -56,6 +59,9 @@ def welcome_message():
 
 
 def print_menu():
+    '''
+    Prints the menu to the user
+    '''
     return_value = ''
     for key, value in menu.items():
         print('\n{}\n----------\n' .format(key))
@@ -82,50 +88,107 @@ def get_user_input():
 
 
 def exit_program():
+    '''
+    Will exit program when called
+    '''
     exit(0)
 
 
 def check_user_input():
+    '''
+    Prompts user for input and listens for input
+    '''
     user_input = input('->')
     if user_input == 'quit':
-        print('Order Complete')
-        exit_program()
+        user_quit()
     elif user_input == 'order':
-        print(print_order(user_order))
+        place_order()
+    elif user_input.startswith('remove'):
+        removed_item = user_input.split(' ')[-1]
+        remove_item(removed_item)
+    elif user_input == 'menu':
+        print_menu()
+    elif user_input.title() in menu:
+        categories_items(user_input)
     else:
         add_order(user_input)
     return user_input
 
+def user_quit():
+    print('Order Complete')
+    exit_program()
+
+def place_order():
+    print(print_order(user_order))
+
+
+def categories_items(category):
+    category = category.title()
+    for key in menu[category]:
+        print(key)
+
 
 def print_order(user_order):
+    '''
+    Prints order when user is finished selecting items
+    '''
+    sub_total = calculate_total()
+    order_tax_total = calculate_tax()
+    final_total = order_tax_total + sub_total
     order_summary = 'Order #{}\n'.format(uuid.uuid4())
     for item, quantity in user_order.items():
         item = item.title()
         for category in menu.values():
             if item in category:
                 order_summary += '\n{}: {} ${}'.format(quantity, item, category[item])
+    order_summary += '\nSubtotal: ${}'.format(sub_total)
+    order_summary += '\nTax: ${t:0.2f}'.format(t = order_tax_total)
+    order_summary += '\nTotal: ${h:0.2f}'.format(h = final_total)
+
     return order_summary
 
+def calculate_total():
+    order_total = 0
+    for item, quantity in user_order.items():
+        item = item.title()
+        for category in menu.values():
+            if item in category:
+                item_price = category[item] * quantity
+                order_total += item_price
+    return order_total
+
+def calculate_tax():
+    tax_total = calculate_total() * tax
+    return tax_total
 
 def add_order(item):
+    '''
+    Adds items to users total order
+    '''
     for course in menu:
-        if item.title() in menu[course]:
+        item = item.title()
+        if item in menu[course]:
             if item in user_order:
                 user_order[item] = user_order[item] + 1
             else:
                 user_order[item] = 1
             print('{} has been added to your order' .format(item))
+            print(print_order(user_order))
             return item
 
 
 def remove_item(item):
+    '''
+    Will remove items when called
+    '''
+    item = item.title()
     if item in user_order:
         user_order[item] -= 1
         if user_order[item] == 0:
             del user_order[item]
-            print('{} has been removed from your order' .format(item))
-        else:
-            print('{} not found' .format(item))
+        print('{} has been removed from your order' .format(item))
+    else:
+        print('{} not found' .format(item))
 
 
 def main():
