@@ -3,7 +3,7 @@ import csv
 
 menu = {
     'Appetizers': {
-        'Wings': 8.00,
+        'Wings': {8.00: 1},
         'Spring Rolls': 5.00,
         'Cookies': 2.00,
         'Grilled Squid': 8.00,
@@ -12,7 +12,7 @@ menu = {
         'Savory Tart': 10.00,
         'Roasted Duck Salad': 12.00,
         'Crostini Ai Funghi': 13.00,
-        'Lobster Raviolo': 17.00,
+        'Lobster Ravioli': 17.00,
         'Oysters': 15.00,
         'Bagna Cauda': 14.00
     },
@@ -97,14 +97,15 @@ def print_menu():
     """
     return_value = ''
     for key, value in menu.items():
-        # import pdb; pdb.set_trace()
         print('\n{}\n-----------------------------------\n' .format(key))
-        for item, price in value.items():
-            item_str = item.ljust(20)
-            price_str = ('$' + str(price) + '0').rjust(15)
-            new_str = item_str + price_str
-            print(new_str)
-            return_value += '{}: ${p:0.2f}\n' .format(item, p=price)
+        for key, value in value.items():
+            for item, price in value.values():
+                import pdb; pdb.set_trace()
+                item_str = item.ljust(20)
+                price_str = ('$' + str(price) + '0').rjust(15)
+                new_str = item_str + price_str
+                print(new_str)
+                return_value += '{}: ${p:0.2f}\n' .format(item, p=price)
     return return_value
 
 
@@ -278,7 +279,6 @@ def main():
     get_user_input()
 
     while True:
-        # import pdb; pdb.set_trace()
         user_input = check_user_input()
         if user_input is None:
             print('Not on the Menu. Try again...')

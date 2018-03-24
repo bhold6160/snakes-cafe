@@ -6,10 +6,18 @@ def test_print_menu():
 def test_user_input():
     pass
 
+def test_valid_input():
+    cafe.basket = {}
+    assert cafe.add_order('rocks', 1) is False
+
 def test_add_order():
     cafe.basket = {}
     cafe.add_order('Pie', 1)
     assert 'Pie' in cafe.basket
+
+def test_valid_removie_item():
+    cafe.basket = {}
+    assert cafe.remove_item('plates') is False
 
 def test_remove_item():
     cafe.basket = {'Pie': 1}
