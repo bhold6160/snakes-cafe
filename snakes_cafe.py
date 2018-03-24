@@ -81,8 +81,7 @@ def welcome_message():
     """
     Prints the welcome message to the user
     """
-    print(
-        """
+    print("""
 ************************************\n\
 - Welcome to the Snakes Cafe!\n\
 - Please see our menu below.\n\
@@ -90,8 +89,7 @@ def welcome_message():
 - Type "menu" anytime to view our menu\n\
 - Type "order" to complete your order\n\
 - Quit at any time, type "q"\n\
-************************************"""
-    )
+************************************""")
 
 def print_menu():
     """
@@ -99,8 +97,8 @@ def print_menu():
     """
     return_value = ''
     for key, value in menu.items():
-
-        print('{}\n-----------------------------------\n' .format(key))
+        # import pdb; pdb.set_trace()
+        print('\n{}\n-----------------------------------\n' .format(key))
         for item, price in value.items():
             item_str = item.ljust(20)
             price_str = ('$' + str(price) + '0').rjust(15)
@@ -114,9 +112,10 @@ def get_user_input():
     """
     Input from the user for menu item
     """
-    print('***********************************\n\
-** What would you like to order? ''**\n\
-***********************************')
+    print("""
+***********************************\n\
+** What would you like to order?**\n\
+***********************************""")
 
 
 def exit_program():
@@ -141,7 +140,9 @@ def check_user_input():
     elif user_input == 'menu':
         print_menu()
     elif user_input.title() in menu:
-        categories_items(user_input)
+        item_category(user_input)
+    elif user_input == None:
+        print('Not on the Menu. Try again...')
     else:
         user_input = user_input.split(' ')
         if len(user_input) == 1:
@@ -149,7 +150,6 @@ def check_user_input():
         else:
             add_order(user_input[0], user_input[1])
     return user_input
-    
 
 
 def user_quit():
@@ -169,7 +169,7 @@ def place_order():
 
 
 
-def categories_items(category):
+def item_category(category):
     """
     Retrieves categories from the dictionary and prints them to the user
     """
@@ -230,10 +230,10 @@ def add_order(item, quantity=1):
         if item in menu[course]:
             if item in basket:
                 basket[item] = basket[item] + int(quantity)
-                print('{} {} has been added to your order'.format(basket[item], item))
+                print('{} {} added to your order'.format(basket[item], item))
             else:
                 basket[item] = 1
-                print('{} has been added to your order' .format(item))
+                print('{} added to your order' .format(item))
 
             return item
 
@@ -253,6 +253,9 @@ def remove_item(item):
 
 
 def optional_menu():
+    """
+    Presents the user with an prompt to enter in their own menu
+    """
     menu_name = input('Please enter your menu file path: ')
     new_menu = {}
     with open(menu_name) as csv_file:
@@ -275,6 +278,7 @@ def main():
     get_user_input()
 
     while True:
+        # import pdb; pdb.set_trace()
         user_input = check_user_input()
         if user_input is None:
             print('Not on the Menu. Try again...')
