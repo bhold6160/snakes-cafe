@@ -12,8 +12,8 @@ menu = {
         'Savory Tart': 10.00,
         'Roasted Duck Salad': 12.00,
         'Crostini Ai Funghi': 13.00,
-        'Lobster Raviolo Deconstructed': 17.00,
-        'Fresh Northwest Oysters': 15.00,
+        'Lobster Raviolo': 17.00,
+        'Oysters': 15.00,
         'Bagna Cauda': 14.00
     },
     'Entrees': {
@@ -23,7 +23,7 @@ menu = {
         'A Literal Garden': 12.00,
         'Pad Thai': 10.00,
         'Spicy Meatballs': 12.00,
-        'Spicy Creole Andouille Hash': 15.00,
+        'Andouille Hash': 15.00,
         'Toulouse Beignets': 15.00,
         'Dutch Baby': 10.00,
         'Lamb Sliders': 17.00,
@@ -37,12 +37,12 @@ menu = {
         'Mango Sicky Rice': 6.00,
         'Mushroom Yogurt': 5.00,
         'Popsicle': 3.00,
-        'Butterfinger Cheesecake': 6.00,
+        'Butterfinger': 6.00,
         'Banana Split': 7.00,
         'Red Velvet Cake': 8.00,
         'Chocolate Truffle': 8.00,
         'Chocolate Fudge Cake': 8.00,
-        'Bailey\'s Irish Cream Cheesecake': 8.00
+        'Cheesecake': 8.00
     },
     'Drinks': {
         'Coffee': 3.00,
@@ -81,13 +81,17 @@ def welcome_message():
     """
     Prints the welcome message to the user
     """
-    welcome = print('**************************************\n\
-** Welcome to the Snakes Cafe! **\n\
-** Please see our menu below. **\n\
-** To quit at any time, type "quit" **\n\
-**************************************')
-    return welcome
-
+    print(
+        """
+************************************\n\
+- Welcome to the Snakes Cafe!\n\
+- Please see our menu below.\n\
+- Remove an item type "remove"<item>\n\
+- Type "menu" anytime to view our menu\n\
+- Type "order" to complete your order\n\
+- Quit at any time, type "q"\n\
+************************************"""
+    )
 
 def print_menu():
     """
@@ -96,7 +100,7 @@ def print_menu():
     return_value = ''
     for key, value in menu.items():
 
-        print('\n{}\n--------------------------------------\n' .format(key))
+        print('{}\n-----------------------------------\n' .format(key))
         for item, price in value.items():
             item_str = item.ljust(20)
             price_str = ('$' + str(price) + '0').rjust(15)
@@ -127,8 +131,7 @@ def check_user_input():
     Prompts user for input and listens for input
     """
     user_input = input('->')
-    import pdb; pdb.set_trace()
-    if user_input == 'quit':
+    if user_input == 'q':
         user_quit()
     elif user_input == 'order':
         place_order()
@@ -267,7 +270,6 @@ def main():
     """
     Main entry point for the app 
     """
-    optional_menu()
     welcome_message()
     print_menu()
     get_user_input()
@@ -280,11 +282,7 @@ def main():
 
 
 if __name__ == "__main__":
-    try:
-        optional_menu()
-    except ImportError:
-        print('Menu not found')
-        pass
+    # optional_menu()
     try:
         main()
     except KeyboardInterrupt:
