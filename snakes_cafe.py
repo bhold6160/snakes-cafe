@@ -217,7 +217,6 @@ def calculate_tax():
 
 
 def add_order(item, quantity=1):
-
     """
     Adds items to users total order
     """
@@ -250,17 +249,25 @@ def remove_item(item):
         print('{} not found' .format(item))
 
 
-# def optional_menu():
-
-#     menu_name = input('Please enter your menu name: ').strip()
-#     try:
-#         with open as csvfile
-
+def optional_menu():
+    menu_name = input('Please enter your menu file path: ')
+    new_menu = {}
+    with open(menu_name) as csv_file:
+        filename = csv.reader(csv_file)
+        for row in filename:
+            category, item, price, quantity = row
+            if category in new_menu:
+                new_menu[category][item] = float(price)
+            else:
+                new_menu[category] = {item:float(price)}
+        print(new_menu)
+        
 
 def main():
     """
     Main entry point for the app 
     """
+    optional_menu()
     welcome_message()
     print_menu()
     get_user_input()
@@ -273,6 +280,11 @@ def main():
 
 
 if __name__ == "__main__":
+    try:
+        optional_menu()
+    except ImportError:
+        print('Menu not found')
+        pass
     try:
         main()
     except KeyboardInterrupt:
