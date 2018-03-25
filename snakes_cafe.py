@@ -126,7 +126,7 @@ def exit_program():
     exit(0)
 
 
-def check_user_input():
+def check_user_input(menu):
     """
     Prompts user for input and listens for input
     """
@@ -143,8 +143,8 @@ def check_user_input():
         print_menu()
     elif user_input.title() in menu:
         item_category(user_input)
-    elif user_input != menu:
-        print('Not on the Menu. Try again...')
+    # elif user_input != menu:
+    #     print('Not on the Menu. Try again...')
     else:
         user_input = user_input.split(' ')
         if len(user_input) == 1:
@@ -280,7 +280,7 @@ def main():
     get_user_input()
 
     while True:
-        user_input = check_user_input()
+        user_input = check_user_input(menu)
         if user_input is None:
             print('Not on the Menu. Try again...')
             continue
