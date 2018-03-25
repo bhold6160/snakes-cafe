@@ -4,73 +4,73 @@ import csv
 menu = {
     'Appetizers': {
         'Wings': {8.00: 1},
-        'Spring Rolls': 5.00,
-        'Cookies': 2.00,
-        'Grilled Squid': 8.00,
-        'Crab Wonton': 6.00,
-        'Satay': 7.00,
-        'Savory Tart': 10.00,
-        'Roasted Duck Salad': 12.00,
-        'Crostini Ai Funghi': 13.00,
-        'Lobster Ravioli': 17.00,
-        'Oysters': 15.00,
-        'Bagna Cauda': 14.00
+        'Spring Rolls': {5.00: 2},
+        'Cookies': {2.00: 4},
+        'Grilled Squid': {8.00: 6},
+        'Crab Wonton': {6.00: 8},
+        'Satay': {7.00: 10},
+        'Savory Tart': {10.00: 12},
+        'Roasted Duck Salad': {12.00: 14},
+        'Crostini Ai Funghi': {13.00: 16},
+        'Lobster Ravioli': {17.00: 18},
+        'Oysters': {15.00: 20},
+        'Bagna Cauda': {14.00: 22}
     },
     'Entrees': {
-        'Salmon': 15.00,
-        'Steak': 20.00,
-        'Meat Tornado': 25.00,
-        'A Literal Garden': 12.00,
-        'Pad Thai': 10.00,
-        'Spicy Meatballs': 12.00,
-        'Andouille Hash': 15.00,
-        'Toulouse Beignets': 15.00,
-        'Dutch Baby': 10.00,
-        'Lamb Sliders': 17.00,
-        'Crab Nachos': 21.00,
-        'Chicken Parmesan': 19.00
+        'Salmon': {15.00: 0},
+        'Steak': {20.00: 1},
+        'Meat Tornado': {25.00: 1},
+        'A Literal Garden': {12.00: 3},
+        'Pad Thai': {10.00: 5},
+        'Spicy Meatballs': {12.00: 8},
+        'Andouille Hash': {15.00: 21},
+        'Toulouse Beignets': {15.00: 34},
+        'Dutch Baby': {10.00: 55},
+        'Lamb Sliders': {17.00: 89},
+        'Crab Nachos': {21.00: 144},
+        'Chicken Parmesan': {19.00: 233}
     },
     'Desserts': {
-        'Ice Cream': 6.00,
-        'Cake': 6.00,
-        'Pie': 7.00,
-        'Mango Sicky Rice': 6.00,
-        'Mushroom Yogurt': 5.00,
-        'Popsicle': 3.00,
-        'Butterfinger': 6.00,
-        'Banana Split': 7.00,
-        'Red Velvet Cake': 8.00,
-        'Chocolate Truffle': 8.00,
-        'Chocolate Fudge Cake': 8.00,
-        'Cheesecake': 8.00
+        'Ice Cream': {6.00: 377},
+        'Cake': {6.00: 610},
+        'Pie': {7.00: 987},
+        'Mango Sicky Rice': {6.00: 1597},
+        'Mushroom Yogurt': {5.00: 2584},
+        'Popsicle': {3.00: 4181},
+        'Butterfinger': {6.00: 6765},
+        'Banana Split': {7.00: 10946},
+        'Red Velvet Cake': {8.00: 17711},
+        'Chocolate Truffle': {8.00: 28657},
+        'Chocolate Fudge Cake': {8.00: 46368},
+        'Cheesecake': {8.00: 75025}
     },
     'Drinks': {
-        'Coffee': 3.00,
-        'Tea': 2.00,
-        'Innocent Blood': 50.00,
-        'Champagne': 8.00,
-        'Martini': 11.00,
-        'Italian Lemondrop': 10.00,
-        'Pitcher And Catcher': 10.00,
-        'Regret': 15.00,
-        'Dark And Stormy': 11.00,
-        'Greek Martini': 12.5,
-        'White Wine': 12.00,
-        'Red Wine': 12.00
+        'Coffee': {3.00: 1},
+        'Tea': {2.00: 3},
+        'Innocent Blood': {50.00: 5},
+        'Champagne': {8.00: 7},
+        'Martini': {11.00: 9},
+        'Italian Lemondrop': {10.00: 11},
+        'Pitcher of beer': {10.00: 13},
+        'Regret': {15.00: 15},
+        'Dark And Stormy': {11.00: 17},
+        'Greek Martini': {12.5: 19},
+        'White Wine': {12.00: 21},
+        'Red Wine': {12.00: 23}
     },
     'Sides': {
-        'Bread': 2.00,
-        'Hot Peppers': 1.00,
-        'Potatoes': 3.00,
-        'Bacon': 5.00,
-        'Apples': 1.00,
-        'Rice': 4.00,
-        'Noodles': 4.00,
-        'Eggs': 3.00,
-        'Corn': 4.00,
-        'Waffles': 6.00,
-        'Onions': 2.00,
-        'Chickpeas': 4.00
+        'Bread': {2.00: 25},
+        'Hot Peppers': {1.00: 27},
+        'Potatoes': {3.00: 29},
+        'Bacon': {5.00: 31},
+        'Apples': {1.00: 33},
+        'Rice': {4.00: 35},
+        'Noodles': {4.00: 37},
+        'Eggs': {3.00: 39,
+        'Corn': {4.00: 41},
+        'Waffles': {6.00: 43},
+        'Onions': {2.00: 45},
+        'Chickpeas': {4.00: 47}
     }
 }
 
@@ -98,14 +98,13 @@ def print_menu():
     return_value = ''
     for key, value in menu.items():
         print('\n{}\n-----------------------------------\n' .format(key))
-        for key, value in value.items():
-            for item, price in value.values():
-                import pdb; pdb.set_trace()
-                item_str = item.ljust(20)
-                price_str = ('$' + str(price) + '0').rjust(15)
-                new_str = item_str + price_str
-                print(new_str)
-                return_value += '{}: ${p:0.2f}\n' .format(item, p=price)
+        for item, price in value.values():
+            import pdb; pdb.set_trace()
+            item_str = item.ljust(20)
+            price_str = ('$' + str(price) + '0').rjust(15)
+            new_str = item_str + price_str
+            print(new_str)
+            return_value += '{}: ${p:0.2f}\n' .format(item, p=price)
     return return_value
 
 
@@ -130,6 +129,7 @@ def check_user_input():
     """
     Prompts user for input and listens for input
     """
+    menu = menu.values()
     user_input = input('->')
     if user_input == 'q':
         user_quit()
@@ -142,7 +142,7 @@ def check_user_input():
         print_menu()
     elif user_input.title() in menu:
         item_category(user_input)
-    elif user_input == None:
+    elif user_input != menu:
         print('Not on the Menu. Try again...')
     else:
         user_input = user_input.split(' ')
