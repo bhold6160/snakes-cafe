@@ -17,7 +17,8 @@ def test_add_order():
 
 def test_valid_removie_item():
     cafe.basket = {}
-    assert cafe.remove_item('plates') is False
+    cafe.remove_item('plates')
+    assert 'plates' in cafe.basket
 
 def test_remove_item():
     cafe.basket = {'Pie': 1}
