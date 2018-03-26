@@ -8,7 +8,7 @@ def test_user_input():
 
 def test_valid_input():
     cafe.basket = {}
-    assert cafe.add_order('rocks', 1) is False
+    assert cafe.add_order('rocks', 1) is None
 
 def test_add_order():
     cafe.basket = {}
