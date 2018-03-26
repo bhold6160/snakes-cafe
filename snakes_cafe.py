@@ -188,11 +188,11 @@ def print_order(user_order):
     order_tax_total = calculate_tax()
     final_total = order_tax_total + sub_total
     order_summary = ' '
-    for item, quantity in user_order.items():
+    for item, quantity in basket.items():
         item = item.title()
         for category in menu.values():
             if item in category:
-                order_summary += '\n{}: {} ${:0.2f}'.format(quantity, item, category[item])
+                order_summary += '\n{}: {} ${:0.2f}'.format(quantity, item, category[item][0])
     order_summary += '\nSubtotal: ${:0.2f}'.format(sub_total)
     order_summary += '\nTax: ${t:0.2f}'.format(t = order_tax_total)
     order_summary += '\nTotal: ${h:0.2f}'.format(h = final_total)
@@ -208,7 +208,7 @@ def calculate_total():
         item = item.title()
         for category in menu.values():
             if item in category:
-                item_price = category[item] * quantity
+                item_price = category[item][0] * quantity
                 order_total += item_price
     return order_total
 
