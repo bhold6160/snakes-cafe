@@ -1,4 +1,5 @@
-import uuid
+from uuid import uuid4
+import csv
 
 menu = {
     'Appetizers': {
@@ -7,7 +8,13 @@ menu = {
         'Cookies': 2.00,
         'Grilled Squid': 8.00,
         'Crab Wonton': 6.00,
-        'Satay': 7.00 
+        'Satay': 7.00,
+        'Savory Tart': 10.00,
+        'Roasted Duck Salad': 12.00,
+        'Crostini Ai Funghi': 13.00,
+        'Lobster Raviolo': 17.00,
+        'Oysters': 15.00,
+        'Bagna Cauda': 14.00
     },
     'Entrees': {
         'Salmon': 15.00,
@@ -15,7 +22,13 @@ menu = {
         'Meat Tornado': 25.00,
         'A Literal Garden': 12.00,
         'Pad Thai': 10.00,
-        'Spicy Meatballs': 12.00 
+        'Spicy Meatballs': 12.00,
+        'Andouille Hash': 15.00,
+        'Toulouse Beignets': 15.00,
+        'Dutch Baby': 10.00,
+        'Lamb Sliders': 17.00,
+        'Crab Nachos': 21.00,
+        'Chicken Parmesan': 19.00
     },
     'Desserts': {
         'Ice Cream': 6.00,
@@ -23,7 +36,13 @@ menu = {
         'Pie': 7.00,
         'Mango Sicky Rice': 6.00,
         'Mushroom Yogurt': 5.00,
-        'Popsicle': 3.00 
+        'Popsicle': 3.00,
+        'Butterfinger': 6.00,
+        'Banana Split': 7.00,
+        'Red Velvet Cake': 8.00,
+        'Chocolate Truffle': 8.00,
+        'Chocolate Fudge Cake': 8.00,
+        'Cheesecake': 8.00
     },
     'Drinks': {
         'Coffee': 3.00,
@@ -31,7 +50,13 @@ menu = {
         'Innocent Blood': 50.00,
         'Champagne': 8.00,
         'Martini': 11.00,
-        'Italian Lemondrop': 10.00 
+        'Italian Lemondrop': 10.00,
+        'Pitcher And Catcher': 10.00,
+        'Regret': 15.00,
+        'Dark And Stormy': 11.00,
+        'Greek Martini': 12.5,
+        'White Wine': 12.00,
+        'Red Wine': 12.00
     },
     'Sides': {
         'Bread': 2.00,
@@ -39,35 +64,41 @@ menu = {
         'Potatoes': 3.00,
         'Bacon': 5.00,
         'Apples': 1.00,
-        'Rice': 4.00 
+        'Rice': 4.00,
+        'Noodles': 4.00,
+        'Eggs': 3.00,
+        'Corn': 4.00,
+        'Waffles': 6.00,
+        'Onions': 2.00,
+        'Chickpeas': 4.00
     }
 }
 
-user_order = {}
+basket = {}
 tax = .101
 
 def welcome_message():
-    '''
+    """
     Prints the welcome message to the user
-    '''
-    welcome = print('**************************************\n\
-** Welcome to the Snakes Cafe! **\n\
-** Please see our menu below. **\n\
-** To quit at any time, type "quit" **\n\
-**************************************')
-    return welcome
-
+    """
+    print("""
+************************************\n\
+- Welcome to the Snakes Cafe!\n\
+- Please see our menu below.\n\
+- Remove an item type "remove"<item>\n\
+- Type "menu" anytime to view our menu\n\
+- Type "order" to complete your order\n\
+- Quit at any time, type "q"\n\
+************************************""")
 
 def print_menu():
-    '''
+    """
     Prints the menu to the user
-    '''
+    """
     return_value = ''
     for key, value in menu.items():
-        print('\n{}\n----------\n' .format(key))
-        '''
-        Input from the user for menu item
-        '''
+        # import pdb; pdb.set_trace()
+        print('\n{}\n-----------------------------------\n' .format(key))
         for item, price in value.items():
             item_str = item.ljust(20)
             price_str = ('$' + str(price) + '0').rjust(15)
@@ -78,27 +109,28 @@ def print_menu():
 
 
 def get_user_input():
-    '''
+    """
     Input from the user for menu item
-    '''
-    return input('***********************************\n\
-** What would you like to order? ''**\n\
-***********************************\n->')
+    """
+    print("""
+***********************************\n\
+** What would you like to order?**\n\
+***********************************""")
 
 
 def exit_program():
-    '''
+    """
     Will exit program when called
-    '''
+    """
     exit(0)
 
 
 def check_user_input():
-    '''
+    """
     Prompts user for input and listens for input
-    '''
+    """
     user_input = input('->')
-    if user_input == 'quit':
+    if user_input == 'q':
         user_quit()
     elif user_input == 'order':
         place_order()
@@ -108,47 +140,69 @@ def check_user_input():
     elif user_input == 'menu':
         print_menu()
     elif user_input.title() in menu:
-        categories_items(user_input)
+        item_category(user_input)
+    elif user_input == None:
+        print('Not on the Menu. Try again...')
     else:
-        add_order(user_input)
+        user_input = user_input.split(' ')
+        if len(user_input) == 1:
+            add_order(user_input)
+        else:
+            add_order(user_input[0], user_input[1])
     return user_input
 
+
 def user_quit():
-    print('Order Complete')
+    """
+    Exits the program
+    """
+    print('Come back soon!')
     exit_program()
 
+
 def place_order():
-    print(print_order(user_order))
+    """
+    Printing out the users finished order
+    """
+    print('Order #{}'.format(uuid4()))
+    print(print_order(basket))
 
 
-def categories_items(category):
+
+def item_category(category):
+    """
+    Retrieves categories from the dictionary and prints them to the user
+    """
     category = category.title()
     for key in menu[category]:
         print(key)
 
 
 def print_order(user_order):
-    '''
+    """
     Prints order when user is finished selecting items
-    '''
+    """
     sub_total = calculate_total()
     order_tax_total = calculate_tax()
     final_total = order_tax_total + sub_total
-    order_summary = 'Order #{}\n'.format(uuid.uuid4())
+    order_summary = ' '
     for item, quantity in user_order.items():
         item = item.title()
         for category in menu.values():
             if item in category:
-                order_summary += '\n{}: {} ${}'.format(quantity, item, category[item])
-    order_summary += '\nSubtotal: ${}'.format(sub_total)
+                order_summary += '\n{}: {} ${:0.2f}'.format(quantity, item, category[item])
+    order_summary += '\nSubtotal: ${:0.2f}'.format(sub_total)
     order_summary += '\nTax: ${t:0.2f}'.format(t = order_tax_total)
     order_summary += '\nTotal: ${h:0.2f}'.format(h = final_total)
-
     return order_summary
 
+
 def calculate_total():
+    """
+    Calculating returning to the total number of items multiplied by their quantity
+    """
     order_total = 0
-    for item, quantity in user_order.items():
+    for item, quantity in basket.items():
         item = item.title()
         for category in menu.values():
             if item in category:
@@ -156,43 +210,72 @@ def calculate_total():
                 order_total += item_price
     return order_total
 
+
 def calculate_tax():
+    """
+    Calculating the tax by multiplying it by our total
+    """
     tax_total = calculate_total() * tax
     return tax_total
 
-def add_order(item):
-    '''
+
+def add_order(item, quantity=1):
+    """
     Adds items to users total order
-    '''
+    """
     for course in menu:
+        if type(item) == list:
+            item = item[0]
         item = item.title()
         if item in menu[course]:
-            if item in user_order:
-                user_order[item] = user_order[item] + 1
+            if item in basket:
+                basket[item] = basket[item] + int(quantity)
+                print('{} {} added to your order'.format(basket[item], item))
             else:
-                user_order[item] = 1
-            print('{} has been added to your order' .format(item))
-            print(print_order(user_order))
+                basket[item] = 1
+                print('{} added to your order' .format(item))
+
             return item
 
 
 def remove_item(item):
-    '''
+    """
     Will remove items when called
-    '''
+    """
     item = item.title()
-    if item in user_order:
-        user_order[item] -= 1
-        if user_order[item] == 0:
-            del user_order[item]
+    if item in basket:
+        basket[item] -= 1
+        if basket[item] == 0:
+            del basket[item]
         print('{} has been removed from your order' .format(item))
     else:
         print('{} not found' .format(item))
 
 
+def optional_menu():
+    """
+    Presents the user with an prompt to enter in their own menu
+    """
+    menu_name = input('Please enter your menu file path: ')
+    new_menu = {}
+    with open(menu_name) as csv_file:
+        filename = csv.reader(csv_file)
+        for row in filename:
+            category, item, price, quantity = row
+            if category in new_menu:
+                new_menu[category][item] = float(price)
+            else:
+                new_menu[category] = {item:float(price)}
+        print(new_menu)
+        
+
 def main():
+    """
+    Main entry point for the app 
+    """
     welcome_message()
     print_menu()
+    get_user_input()
 
     while True:
         user_input = check_user_input()
@@ -200,7 +283,9 @@ def main():
             print('Not on the Menu. Try again...')
             continue
 
+
 if __name__ == "__main__":
+    # optional_menu()
     try:
         main()
     except KeyboardInterrupt:
